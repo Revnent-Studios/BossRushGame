@@ -1,0 +1,69 @@
+[gd_scene load_steps=7 format=3 uid="uid://4wgovgkceo4y"]
+
+[ext_resource type="PackedScene" uid="uid://dq1m7stg5vvah" path="res://objects/player Obj/Robot.tscn" id="1_2pux6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lr0ul"]
+size = Vector2(23, 1123)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_11644"]
+size = Vector2(23, 1123)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vo0d8"]
+size = Vector2(45.0001, 2040.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_70h1p"]
+size = Vector2(1974.5, 435)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_djfw3"]
+size = Vector2(106, 170)
+
+[node name="sandBox" type="Node2D"]
+
+[node name="backGround" type="Polygon2D" parent="."]
+color = Color(0.462745, 0.462745, 0.462745, 1)
+polygon = PackedVector2Array(0, -12, 1984, -10, 1984, 1106, -12, 1106, -14, -26)
+
+[node name="worldBoundaries" type="StaticBody2D" parent="."]
+
+[node name="Worldwall1" type="CollisionShape2D" parent="worldBoundaries"]
+position = Vector2(-11.5, 536.5)
+shape = SubResource("RectangleShape2D_lr0ul")
+
+[node name="worldWall2" type="CollisionShape2D" parent="worldBoundaries"]
+position = Vector2(1981, 540)
+shape = SubResource("RectangleShape2D_11644")
+
+[node name="worldWall3" type="CollisionShape2D" parent="worldBoundaries"]
+position = Vector2(988.5, -22.5)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_vo0d8")
+
+[node name="worldWall4" type="CollisionShape2D" parent="worldBoundaries"]
+position = Vector2(1007.25, 1127)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_vo0d8")
+
+[node name="worldTerrain" type="CollisionShape2D" parent="worldBoundaries"]
+position = Vector2(994.75, 903.5)
+shape = SubResource("RectangleShape2D_70h1p")
+debug_color = Color(0.384314, 0.105882, 0.156863, 0.419608)
+
+[node name="robot" parent="." instance=ExtResource("1_2pux6")]
+position = Vector2(216, 536)
+
+[node name="worldObstacle" type="StaticBody2D" parent="."]
+
+[node name="obstacle1" type="CollisionShape2D" parent="worldObstacle"]
+position = Vector2(410, 620)
+shape = SubResource("RectangleShape2D_djfw3")
+debug_color = Color(0.745098, 0.266667, 0.384314, 0.419608)
+
+[node name="obstacle2" type="CollisionShape2D" parent="worldObstacle"]
+position = Vector2(693, 416)
+shape = SubResource("RectangleShape2D_djfw3")
+debug_color = Color(0.745098, 0.266667, 0.384314, 0.419608)
+
+[node name="obstacle3" type="CollisionShape2D" parent="worldObstacle"]
+position = Vector2(995, 354)
+shape = SubResource("RectangleShape2D_djfw3")
+debug_color = Color(0.745098, 0.266667, 0.384314, 0.419608)
