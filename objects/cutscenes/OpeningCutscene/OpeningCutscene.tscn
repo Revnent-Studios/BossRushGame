@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://bitllsq0pmptf"]
 
-[ext_resource type="PackedScene" uid="uid://dq1m7stg5vvah" path="res://objects/player Obj/Robot.tscn" id="1_mbovp"]
+[ext_resource type="PackedScene" uid="uid://dq1m7stg5vvah" path="res://objects/player Obj/Robot.tscn" id="1_6h1ka"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aywfk"]
 size = Vector2(20, 659)
@@ -29,7 +29,7 @@ shape = SubResource("RectangleShape2D_7xttc")
 [node name="Floor" type="CollisionShape2D" parent="CollisionShapes"]
 position = Vector2(578.5, 569)
 shape = SubResource("RectangleShape2D_d7o5b")
-debug_color = Color(0.964706, 0.164706, 0.215686, 0.419608)
+debug_color = Color(0.513726, 0.0431373, 0.0862745, 0.419608)
 
 [node name="Door" type="Area2D" parent="CollisionShapes"]
 
@@ -39,5 +39,5 @@ scale = Vector2(1.02234, 1)
 shape = SubResource("RectangleShape2D_foj8f")
 debug_color = Color(0, 0.647059, 0.180392, 0.419608)
 
-[node name="Robot" parent="." instance=ExtResource("1_mbovp")]
+[node name="Robot" parent="." instance=ExtResource("1_6h1ka")]
 position = Vector2(229, 396)

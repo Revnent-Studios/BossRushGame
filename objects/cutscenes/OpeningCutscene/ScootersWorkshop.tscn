@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3 uid="uid://cwmvvgstae2mt"]
+
+[ext_resource type="PackedScene" uid="uid://3x6krkj1fb1s" path="res://objects/Scooter/Scooter.tscn" id="1_dqip2"]
+[ext_resource type="PackedScene" uid="uid://dq1m7stg5vvah" path="res://objects/player Obj/Robot.tscn" id="2_1tv6u"]
+[ext_resource type="PackedScene" uid="uid://diyn3ign38b57" path="res://objects/Car/Car.tscn" id="3_s0c4l"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uf36r"]
+size = Vector2(46, 660)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1l8oo"]
+size = Vector2(27, 657)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ie6ev"]
+size = Vector2(1181, 175)
+
+[node name="ScootersWorkshop" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="LeftWall" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-20, 320)
+shape = SubResource("RectangleShape2D_uf36r")
+
+[node name="RightWall" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1164.5, 320.5)
+shape = SubResource("RectangleShape2D_1l8oo")
+
+[node name="Floor" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(580.5, 559.5)
+shape = SubResource("RectangleShape2D_ie6ev")
+debug_color = Color(0.87451, 0.329412, 0.309804, 0.419608)
+
+[node name="Scooter" parent="." instance=ExtResource("1_dqip2")]
+position = Vector2(943, 389)
+
+[node name="Robot" parent="." instance=ExtResource("2_1tv6u")]
+position = Vector2(589, 394)
+
+[node name="Car" parent="." instance=ExtResource("3_s0c4l")]
+position = Vector2(104, 352)

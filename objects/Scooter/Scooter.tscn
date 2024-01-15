@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://3x6krkj1fb1s"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2b3j0"]
+
+[node name="Scooter" type="CharacterBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(5, 5)
+shape = SubResource("CapsuleShape2D_2b3j0")
+debug_color = Color(0.733333, 0.470588, 0.0470588, 0.419608)
