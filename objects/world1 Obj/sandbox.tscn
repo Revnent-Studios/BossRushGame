@@ -49,7 +49,7 @@ position = Vector2(994.75, 903.5)
 shape = SubResource("RectangleShape2D_70h1p")
 debug_color = Color(0.384314, 0.105882, 0.156863, 0.419608)
 
-[node name="robot" parent="." instance=ExtResource("1_sxsgg")]
+[node name="birju" parent="." instance=ExtResource("1_sxsgg")]
 position = Vector2(216, 536)
 
 [node name="worldObstacle" type="StaticBody2D" parent="."]
