@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://4wgovgkceo4y"]
 
-[ext_resource type="PackedScene" uid="uid://dq1m7stg5vvah" path="res://objects/player Obj/Robot.tscn" id="1_2pux6"]
+[ext_resource type="PackedScene" uid="uid://dq1m7stg5vvah" path="res://objects/player Obj/Robot.tscn" id="1_fre1p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lr0ul"]
 size = Vector2(23, 1123)
@@ -48,7 +48,7 @@ position = Vector2(994.75, 903.5)
 shape = SubResource("RectangleShape2D_70h1p")
 debug_color = Color(0.384314, 0.105882, 0.156863, 0.419608)
 
-[node name="robot" parent="." instance=ExtResource("1_2pux6")]
+[node name="robot" parent="." instance=ExtResource("1_fre1p")]
 position = Vector2(216, 536)
 
 [node name="worldObstacle" type="StaticBody2D" parent="."]
