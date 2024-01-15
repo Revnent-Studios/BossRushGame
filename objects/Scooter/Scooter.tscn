@@ -2,7 +2,7 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2b3j0"]
 
-[node name="Scooter" type="CharacterBody2D"]
+[node name="Scooter" type="Area2D"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(5, 5)

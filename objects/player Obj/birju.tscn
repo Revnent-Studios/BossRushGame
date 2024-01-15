@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dq1m7stg5vvah"]
 
-[ext_resource type="Script" path="res://objects/player Obj/Robot.gd" id="1_np6y4"]
+[ext_resource type="Script" path="res://objects/player Obj/birju.gd" id="1_np6y4"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ou7fn"]
 
