@@ -53,3 +53,4 @@ debug_color = Color(0, 0.647059, 0.180392, 0.419608)
 position = Vector2(229, 396)
 
 [connection signal="body_entered" from="Room" to="Robot" method="_on_room_body_entered"]
+[connection signal="body_entered" from="CollisionShapes/Door" to="Robot" method="_on_door_body_entered"]
