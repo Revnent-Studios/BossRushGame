@@ -2,7 +2,7 @@ class_name Movement
 extends CharacterBody2D
 
 # Exported Variables
-const MOVEMENT_SPEED : float = 500.0
+var speed : float = 500.0
 const max_jump_velocity : float = -800.0
 const gravity : float = 1960.0
 var min_jump_velocity : float = -600.0
@@ -20,9 +20,9 @@ func get_in(delta: float,player:CharacterBody2D) -> void:
 	var direction : float = Input.get_axis("left", "right")
 
 	if direction:
-		player.velocity.x = direction * MOVEMENT_SPEED
+		player.velocity.x = direction * speed
 	else:
-		player.velocity.x = move_toward(player.velocity.x, 0, MOVEMENT_SPEED)
+		player.velocity.x = move_toward(player.velocity.x, 0, speed)
 	
 
 func jump(delta: float,player:CharacterBody2D) -> void:

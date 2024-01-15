@@ -24,4 +24,9 @@ func _physics_process(delta):
 
 func _on_room_body_entered(body):
 	indoors = true
+	player_Motion.speed = 225
 	pass # Replace with function body.
+
+
+func _on_door_body_entered(body):
+	get_tree().change_scene_to_file("res://objects/cutscenes/OpeningCutscene/ScootersWorkshop.tscn")
