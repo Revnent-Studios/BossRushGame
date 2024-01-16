@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://bitllsq0pmptf"]
+[gd_scene load_steps=8 format=3 uid="uid://bitllsq0pmptf"]
 
 [ext_resource type="PackedScene" uid="uid://dq1m7stg5vvah" path="res://objects/player Obj/birju.tscn" id="1_6h1ka"]
+[ext_resource type="PackedScene" uid="uid://cgrae7f4cbofr" path="res://objects/DialogueHandler/DialogueHadler.tscn" id="1_i2aef"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rey7r"]
-size = Vector2(1177, 662)
+size = Vector2(1159, 662)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aywfk"]
 size = Vector2(20, 659)
@@ -19,10 +20,13 @@ size = Vector2(141, 244)
 
 [node name="OpeningCutscene" type="Node2D"]
 
+[node name="DialogueHadler" parent="." instance=ExtResource("1_i2aef")]
+visible = false
+
 [node name="Room" type="Area2D" parent="."]
 
 [node name="RoomArea" type="CollisionShape2D" parent="Room"]
-position = Vector2(578.5, 321)
+position = Vector2(580, 331)
 shape = SubResource("RectangleShape2D_rey7r")
 debug_color = Color(0.784314, 0.796078, 0.784314, 0.419608)
 
@@ -50,7 +54,7 @@ shape = SubResource("RectangleShape2D_foj8f")
 debug_color = Color(0, 0.647059, 0.180392, 0.419608)
 
 [node name="Robot" parent="." instance=ExtResource("1_6h1ka")]
-position = Vector2(229, 396)
+position = Vector2(119, 378)
 
 [connection signal="body_entered" from="Room" to="Robot" method="_on_room_body_entered"]
 [connection signal="body_entered" from="CollisionShapes/Door" to="Robot" method="_on_door_body_entered"]

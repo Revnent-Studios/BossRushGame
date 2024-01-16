@@ -3,6 +3,7 @@ extends CharacterBody2D
 # Create an instance of the Movement class
 var player_Motion : Movement
 var indoors = false
+var cutscene = false
 
 func _ready():
 	# Instantiate the Movement class
@@ -14,8 +15,11 @@ func _ready():
 func _physics_process(delta):
 	# Call the methods on the player_Motion instance
 	player_Motion.get_gravity(delta,$".")
-	player_Motion.get_in(delta,$".")
-	if not indoors:
+	if cutscene:
+		velocity = Vector2.ZERO
+	if not cutscene:
+		player_Motion.get_in(delta,$".")
+	if not indoors and not cutscene:
 		player_Motion.jump(delta,$".")
 
 	# Continue with your other physics process logic
@@ -23,10 +27,14 @@ func _physics_process(delta):
 
 
 func _on_room_body_entered(body):
-	indoors = true
-	player_Motion.speed = 225
-	pass # Replace with function body.
+	if body == get_node(".") :
+		indoors = true
+		player_Motion.speed = 225
 
 
 func _on_door_body_entered(body):
 	get_tree().change_scene_to_file("res://objects/cutscenes/OpeningCutscene/ScootersWorkshop.tscn")
+
+func _on_scooter_body_entered(body):
+	if body == get_node("."):
+		cutscene = true

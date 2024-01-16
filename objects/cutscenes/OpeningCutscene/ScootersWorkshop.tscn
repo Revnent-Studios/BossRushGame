@@ -1,24 +1,25 @@
-[gd_scene load_steps=7 format=3 uid="uid://cwmvvgstae2mt"]
+[gd_scene load_steps=8 format=3 uid="uid://cwmvvgstae2mt"]
 
 [ext_resource type="PackedScene" uid="uid://3x6krkj1fb1s" path="res://objects/Scooter/Scooter.tscn" id="1_dqip2"]
 [ext_resource type="PackedScene" uid="uid://dq1m7stg5vvah" path="res://objects/player Obj/birju.tscn" id="2_1tv6u"]
 [ext_resource type="PackedScene" uid="uid://diyn3ign38b57" path="res://objects/Car/Car.tscn" id="3_s0c4l"]
+[ext_resource type="PackedScene" uid="uid://cgrae7f4cbofr" path="res://objects/DialogueHandler/DialogueHadler.tscn" id="4_68q3y"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uf36r"]
-size = Vector2(46, 660)
+size = Vector2(46, 648)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1l8oo"]
 size = Vector2(27, 657)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ie6ev"]
-size = Vector2(1181, 175)
+size = Vector2(1151, 263.5)
 
 [node name="ScootersWorkshop" type="Node2D"]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="LeftWall" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(-20, 320)
+position = Vector2(-20, 326)
 shape = SubResource("RectangleShape2D_uf36r")
 
 [node name="RightWall" type="CollisionShape2D" parent="StaticBody2D"]
@@ -26,15 +27,20 @@ position = Vector2(1164.5, 320.5)
 shape = SubResource("RectangleShape2D_1l8oo")
 
 [node name="Floor" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(580.5, 559.5)
+position = Vector2(579, 515.75)
 shape = SubResource("RectangleShape2D_ie6ev")
 debug_color = Color(0.87451, 0.329412, 0.309804, 0.419608)
 
 [node name="Scooter" parent="." instance=ExtResource("1_dqip2")]
-position = Vector2(943, 389)
-
-[node name="Robot" parent="." instance=ExtResource("2_1tv6u")]
-position = Vector2(589, 394)
+position = Vector2(947, 309)
 
 [node name="Car" parent="." instance=ExtResource("3_s0c4l")]
-position = Vector2(238, 374)
+position = Vector2(241, 287)
+
+[node name="Robot" parent="." instance=ExtResource("2_1tv6u")]
+position = Vector2(592, 297)
+
+[node name="DialogueHadler" parent="." instance=ExtResource("4_68q3y")]
+visible = false
+
+[connection signal="body_entered" from="Scooter" to="Robot" method="_on_scooter_body_entered"]

@@ -18,7 +18,6 @@ func get_gravity(delta: float,player:CharacterBody2D) -> void:
 func get_in(delta: float,player:CharacterBody2D) -> void:
 	# Handle horizontal movement
 	var direction : float = Input.get_axis("left", "right")
-
 	if direction:
 		player.velocity.x = direction * speed
 	else:
