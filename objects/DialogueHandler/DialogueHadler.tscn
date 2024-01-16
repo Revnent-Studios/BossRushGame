@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://cgrae7f4cbofr"]
+
+[ext_resource type="Script" path="res://objects/DialogueHandler/DialogueHadler.gd" id="1_hpfkw"]
+[ext_resource type="Texture2D" uid="uid://debebq8vfuujm" path="res://objects/DialogueHandler/dialogueBox.png" id="1_mge2r"]
+[ext_resource type="Texture2D" uid="uid://7nbtjf3ig4sc" path="res://objects/Portraits/6b7ed698713c09ad9e6afc7dcb996a09.jpg" id="2_iu2i7"]
+
+[node name="DialogueHadler" type="Node2D"]
+script = ExtResource("1_hpfkw")
+
+[node name="DialogueBox" type="Sprite2D" parent="."]
+position = Vector2(577, 324)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("1_mge2r")
+
+[node name="6b7Ed698713c09Ad9e6Afc7Dcb996a09" type="Sprite2D" parent="."]
+position = Vector2(144, 516)
+scale = Vector2(0.723404, 0.595238)
+texture = ExtResource("2_iu2i7")
