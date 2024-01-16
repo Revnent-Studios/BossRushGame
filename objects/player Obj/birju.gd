@@ -35,6 +35,7 @@ func _on_room_body_entered(body):
 func _on_door_body_entered(body):
 	get_tree().change_scene_to_file("res://objects/cutscenes/OpeningCutscene/ScootersWorkshop.tscn")
 
-func _on_scooter_body_entered(body):
-	if body == get_node("."):
-		cutscene = true
+func _on_detection_body_entered(body):
+		if body == get_node("."):
+			#change the cutscene to false after deleting scooter's field with freequeue
+			cutscene = true
