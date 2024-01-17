@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dq1m7stg5vvah" path="res://objects/player Obj/birju.tscn" id="2_1tv6u"]
 [ext_resource type="PackedScene" uid="uid://diyn3ign38b57" path="res://objects/Car/Car.tscn" id="3_s0c4l"]
-[ext_resource type="PackedScene" uid="uid://cgrae7f4cbofr" path="res://objects/DialogueHandler/DialogueHadler.tscn" id="4_68q3y"]
+[ext_resource type="PackedScene" uid="uid://cr4xocf21w71u" path="res://objects/DialogueHandler/DialogueHandler.tscn" id="4_68q3y"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uf36r"]
 size = Vector2(46, 648)
@@ -43,8 +43,12 @@ position = Vector2(241, 287)
 [node name="Robot" parent="." instance=ExtResource("2_1tv6u")]
 position = Vector2(592, 297)
 
-[node name="DialogueHadler" parent="." instance=ExtResource("4_68q3y")]
+[node name="DialogueHandler" parent="." instance=ExtResource("4_68q3y")]
 visible = false
+offset_left = 5.0
+offset_top = 0.0
+offset_right = 5.0
+offset_bottom = 0.0
 
 [node name="Scooter" type="Sprite2D" parent="."]
 position = Vector2(1002, 287)
@@ -57,3 +61,4 @@ texture = SubResource("PlaceholderTexture2D_wbv1a")
 shape = SubResource("CapsuleShape2D_ls5qk")
 
 [connection signal="body_entered" from="Scooter/Detection" to="Robot" method="_on_detection_body_entered"]
+[connection signal="body_entered" from="Scooter/Detection" to="DialogueHandler" method="_on_detection_body_entered"]
