@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://dq1m7stg5vvah"]
+[gd_scene load_steps=4 format=3 uid="uid://dq1m7stg5vvah"]
 
 [ext_resource type="Script" path="res://objects/player Obj/birju.gd" id="1_np6y4"]
+[ext_resource type="PackedScene" uid="uid://detrmwmauvbo2" path="res://objects/components/dodge/Dodge.tscn" id="2_cjlee"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ou7fn"]
 
@@ -10,3 +11,5 @@ script = ExtResource("1_np6y4")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(5, 5)
 shape = SubResource("CapsuleShape2D_ou7fn")
+
+[node name="Dodge" parent="." instance=ExtResource("2_cjlee")]

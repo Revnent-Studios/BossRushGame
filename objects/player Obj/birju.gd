@@ -5,17 +5,24 @@ extends CharacterBody2D
 var indoors = false
 var cutscene = false
 var player_Motion : Movement
+var dodge
+var dodgedur = 0.2
 
+signal _is_invincible
 
 func _ready():
 	# Instantiate the Movement class
 	player_Motion = Movement.new()
-	
+	dodge = $Dodge
 	# Add the Movement instance as a child of the current node
-	add_child(player_Motion)
 
 func _physics_process(delta):
 	# Call the methods on the player_Motion instance
+	if Input.is_action_just_pressed("dodge"):
+		dodge._dodge(dodgedur)
+	if dodge._is_dodging():
+		emit_signal("_is_invincible")
+
 	player_Motion.get_gravity(delta,$".")
 	if cutscene:
 		velocity.x = 0
@@ -53,3 +60,5 @@ func _on_dialogue_handler_dialogue_ended():
 	var dialogueBoxSprite = $"../DialogueHandler"
 	cutscene = false
 	dialogueBoxSprite.visible = false
+
+
