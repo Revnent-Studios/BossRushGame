@@ -40,16 +40,6 @@ debug_color = Color(0.87451, 0.329412, 0.309804, 0.419608)
 [node name="Car" parent="." instance=ExtResource("3_s0c4l")]
 position = Vector2(241, 287)
 
-[node name="Robot" parent="." instance=ExtResource("2_1tv6u")]
-position = Vector2(592, 297)
-
-[node name="DialogueHandler" parent="." instance=ExtResource("4_68q3y")]
-visible = false
-offset_left = 5.0
-offset_top = 0.0
-offset_right = 5.0
-offset_bottom = 0.0
-
 [node name="Scooter" type="Sprite2D" parent="."]
 position = Vector2(1002, 287)
 scale = Vector2(1.72, 3.06)
@@ -60,5 +50,17 @@ texture = SubResource("PlaceholderTexture2D_wbv1a")
 [node name="DetectionArea" type="CollisionShape2D" parent="Scooter/Detection"]
 shape = SubResource("CapsuleShape2D_ls5qk")
 
+[node name="Robot" parent="." instance=ExtResource("2_1tv6u")]
+position = Vector2(592, 297)
+
+[node name="DialogueHandler" parent="." instance=ExtResource("4_68q3y")]
+visible = false
+offset_left = 1.0
+offset_top = 0.0
+offset_right = 1.0
+offset_bottom = 0.0
+
 [connection signal="body_entered" from="Scooter/Detection" to="Robot" method="_on_detection_body_entered"]
 [connection signal="body_entered" from="Scooter/Detection" to="DialogueHandler" method="_on_detection_body_entered"]
+[connection signal="body_exited" from="Scooter/Detection" to="DialogueHandler" method="_on_detection_body_exited"]
+[connection signal="dialogueEnded" from="DialogueHandler" to="Robot" method="_on_dialogue_handler_dialogue_ended"]
