@@ -1,9 +1,10 @@
 extends CharacterBody2D
 
 # Create an instance of the Movement class
-var player_Motion : Movement
+
 var indoors = false
 var cutscene = false
+var player_Motion : Movement
 
 
 func _ready():
@@ -45,3 +46,10 @@ func _on_detection_body_entered(body):
 		#change the cutscene to false after deleting scooter's field with freequeue
 		cutscene = true
 		dialogueBoxSprite.visible = true
+		
+
+
+func _on_dialogue_handler_dialogue_ended():
+	var dialogueBoxSprite = $"../DialogueHandler"
+	cutscene = false
+	dialogueBoxSprite.visible = false
