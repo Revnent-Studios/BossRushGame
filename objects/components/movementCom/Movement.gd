@@ -14,6 +14,8 @@ func get_gravity(delta: float,player:CharacterBody2D) -> void:
 	# Add gravity if not on the floor
 	if not player.is_on_floor():
 		player.velocity.y += gravity * delta
+		if Input.is_action_pressed("down"):
+			player.velocity.y +=gravity*delta*3
 
 func get_in(delta: float,player:CharacterBody2D) -> void:
 	# Handle horizontal movement
