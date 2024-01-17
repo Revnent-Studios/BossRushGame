@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://cr4xocf21w71u"]
+
+[ext_resource type="Script" path="res://objects/DialogueHandler/DialogueHandler.gd" id="1_8uv2x"]
+[ext_resource type="Texture2D" uid="uid://debebq8vfuujm" path="res://objects/DialogueHandler/dialogueBox.png" id="2_wtmkt"]
+[ext_resource type="FontFile" uid="uid://bxgpde8amasen" path="res://Resources/Font/fanwood-master/Fanwood Text.otf" id="3_cckih"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_jj358"]
+font = ExtResource("3_cckih")
+font_size = 50
+outline_color = Color(0, 0, 0, 1)
+
+[node name="DialogueHandler" type="Control"]
+layout_mode = 3
+anchor_top = 0.596
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -386.208
+offset_right = -1152.0
+offset_bottom = -648.0
+script = ExtResource("1_8uv2x")
+
+[node name="DialogueBox" type="Sprite2D" parent="."]
+position = Vector2(576, 324)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("2_wtmkt")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 387.0
+offset_right = 1152.0
+offset_bottom = 651.0
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 318.0
+offset_top = 33.0
+offset_right = 1113.0
+offset_bottom = 212.0
+text = "So you ain't been feelin' too well lately huh?"
+label_settings = SubResource("LabelSettings_jj358")
+vertical_alignment = 1
+autowrap_mode = 3

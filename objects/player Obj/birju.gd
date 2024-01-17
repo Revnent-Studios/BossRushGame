@@ -5,6 +5,7 @@ var player_Motion : Movement
 var indoors = false
 var cutscene = false
 
+
 func _ready():
 	# Instantiate the Movement class
 	player_Motion = Movement.new()
@@ -16,7 +17,7 @@ func _physics_process(delta):
 	# Call the methods on the player_Motion instance
 	player_Motion.get_gravity(delta,$".")
 	if cutscene:
-		velocity = Vector2.ZERO
+		velocity.x = 0
 	if not cutscene:
 		player_Motion.get_in(delta,$".")
 	if not indoors and not cutscene:
@@ -34,8 +35,13 @@ func _on_room_body_entered(body):
 
 func _on_door_body_entered(body):
 	get_tree().change_scene_to_file("res://objects/cutscenes/OpeningCutscene/ScootersWorkshop.tscn")
+	
+
+
 
 func _on_detection_body_entered(body):
-		if body == get_node("."):
-			#change the cutscene to false after deleting scooter's field with freequeue
-			cutscene = true
+	var dialogueBoxSprite = $"../DialogueHandler"
+	if body == get_node("."):
+		#change the cutscene to false after deleting scooter's field with freequeue
+		cutscene = true
+		dialogueBoxSprite.visible = true
