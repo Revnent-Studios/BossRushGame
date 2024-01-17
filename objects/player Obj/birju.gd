@@ -7,6 +7,7 @@ var cutscene = false
 var player_Motion : Movement
 var dodge
 var dodgedur = 0.2
+@onready var animation = $AnimationPlayer
 
 signal _is_invincible
 
@@ -28,6 +29,14 @@ func _physics_process(delta):
 		velocity.x = 0
 	if not cutscene:
 		player_Motion.get_in(delta,$".")
+	if player_Motion.get_in(delta,$"."):
+		if Input.is_action_pressed("right"):
+			$BirjuRunner.flip_h = false
+			animation.play("run")
+		if Input.is_action_pressed("left"):
+			$BirjuRunner.flip_h = true
+			animation.play("run")
+		
 	if not indoors and not cutscene:
 		player_Motion.jump(delta,$".")
 
