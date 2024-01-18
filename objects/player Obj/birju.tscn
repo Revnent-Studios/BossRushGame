@@ -1,15 +1,89 @@
-[gd_scene load_steps=4 format=3 uid="uid://dq1m7stg5vvah"]
+[gd_scene load_steps=9 format=3 uid="uid://dq1m7stg5vvah"]
 
 [ext_resource type="Script" path="res://objects/player Obj/birju.gd" id="1_np6y4"]
 [ext_resource type="PackedScene" uid="uid://detrmwmauvbo2" path="res://objects/components/dodge/Dodge.tscn" id="2_cjlee"]
+[ext_resource type="Texture2D" uid="uid://cqaeft6l2pynp" path="res://objects/player Obj/Birju Runner.png" id="3_xyjyr"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ou7fn"]
+radius = 5.0
+height = 31.2
+
+[sub_resource type="Animation" id="Animation_quvqr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BirjuRunner:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+
+[sub_resource type="Animation" id="Animation_fl72v"]
+resource_name = "run"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BirjuRunner:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+}
+
+[sub_resource type="Animation" id="Animation_nhurv"]
+resource_name = "leftrun"
+length = 1.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BirjuRunner:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_c4qng"]
+_data = {
+"RESET": SubResource("Animation_quvqr"),
+"leftrun": SubResource("Animation_nhurv"),
+"run": SubResource("Animation_fl72v")
+}
 
 [node name="Robot" type="CharacterBody2D"]
 script = ExtResource("1_np6y4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 scale = Vector2(5, 5)
 shape = SubResource("CapsuleShape2D_ou7fn")
 
 [node name="Dodge" parent="." instance=ExtResource("2_cjlee")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_c4qng")
+}
+speed_scale = 2.5
+
+[node name="BirjuRunner" type="Sprite2D" parent="."]
+position = Vector2(11, 14)
+texture = ExtResource("3_xyjyr")
+hframes = 16
+frame = 2
+
+[node name="Camera2D" type="Camera2D" parent="."]
+limit_smoothed = true
