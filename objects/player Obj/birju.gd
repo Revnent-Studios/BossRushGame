@@ -7,7 +7,9 @@ var cutscene = false
 var player_Motion : Movement
 var dodge
 var dodgedur = 0.2
-@onready var animation = $AnimationPlayer
+var direction : Vector2 = Vector2.ZERO
+@onready var animtree : AnimationTree = $AnimationTree
+
 
 signal _is_invincible
 
@@ -16,6 +18,11 @@ func _ready():
 	player_Motion = Movement.new()
 	dodge = $Dodge
 	# Add the Movement instance as a child of the current node
+	# Turns animation tree on
+	animtree.active = true
+
+func _process(delta):
+	updateAnimParams()
 
 func _physics_process(delta):
 	# Call the methods on the player_Motion instance
@@ -25,24 +32,28 @@ func _physics_process(delta):
 		emit_signal("_is_invincible")
 
 	player_Motion.get_gravity(delta,$".")
+	direction = Input.get_vector("left","right","jump","down").normalized()
 	if cutscene:
 		velocity.x = 0
 	if not cutscene:
 		player_Motion.get_in(delta,$".")
-	if player_Motion.get_in(delta,$"."):
-		if Input.is_action_pressed("right"):
-			$BirjuRunner.flip_h = false
-			animation.play("run")
-		if Input.is_action_pressed("left"):
-			$BirjuRunner.flip_h = true
-			animation.play("run")
-		
 	if not indoors and not cutscene:
 		player_Motion.jump(delta,$".")
-
+	
+	
 	# Continue with your other physics process logic
 	move_and_slide()
 
+func updateAnimParams():
+	if velocity == Vector2.ZERO:
+		animtree["parameters/conditions/idle"] = true
+		animtree["parameters/conditions/running"] = false
+	else:
+		animtree["parameters/conditions/idle"] = false
+		animtree["parameters/conditions/running"] = true
+	print(direction)
+	animtree["parameters/Run/blend_position"] = direction
+	animtree["parameters/Idle/blend_position"] = direction
 
 func _on_room_body_entered(body):
 	if body == get_node(".") :

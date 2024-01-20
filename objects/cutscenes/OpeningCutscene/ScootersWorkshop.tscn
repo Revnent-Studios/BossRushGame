@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://cwmvvgstae2mt"]
+[gd_scene load_steps=10 format=3 uid="uid://cwmvvgstae2mt"]
 
 [ext_resource type="PackedScene" uid="uid://dq1m7stg5vvah" path="res://objects/player Obj/birju.tscn" id="2_1tv6u"]
+[ext_resource type="PackedScene" uid="uid://ehre83i61mj4" path="res://objects/components/Camera/camera_2d.tscn" id="3_2ahlt"]
 [ext_resource type="PackedScene" uid="uid://diyn3ign38b57" path="res://objects/Car/Car.tscn" id="3_s0c4l"]
 [ext_resource type="PackedScene" uid="uid://cr4xocf21w71u" path="res://objects/DialogueHandler/DialogueHandler.tscn" id="4_68q3y"]
 
@@ -50,17 +51,19 @@ texture = SubResource("PlaceholderTexture2D_wbv1a")
 [node name="DetectionArea" type="CollisionShape2D" parent="Scooter/Detection"]
 shape = SubResource("CapsuleShape2D_ls5qk")
 
+[node name="DialogueHandler" parent="." instance=ExtResource("4_68q3y")]
+visible = false
+offset_left = 123.0
+offset_top = -4.0
+offset_right = 123.0
+offset_bottom = -4.0
+
 [node name="Robot" parent="." instance=ExtResource("2_1tv6u")]
 position = Vector2(592, 297)
 
-[node name="DialogueHandler" parent="." instance=ExtResource("4_68q3y")]
-visible = false
-offset_left = 1.0
-offset_top = 0.0
-offset_right = 1.0
-offset_bottom = 0.0
+[node name="Camera2D2" parent="Robot" instance=ExtResource("3_2ahlt")]
 
-[connection signal="body_entered" from="Scooter/Detection" to="Robot" method="_on_detection_body_entered"]
 [connection signal="body_entered" from="Scooter/Detection" to="DialogueHandler" method="_on_detection_body_entered"]
+[connection signal="body_entered" from="Scooter/Detection" to="Robot" method="_on_detection_body_entered"]
 [connection signal="body_exited" from="Scooter/Detection" to="DialogueHandler" method="_on_detection_body_exited"]
 [connection signal="dialogueEnded" from="DialogueHandler" to="Robot" method="_on_dialogue_handler_dialogue_ended"]
