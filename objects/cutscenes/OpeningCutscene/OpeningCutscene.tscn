@@ -3,54 +3,62 @@
 [ext_resource type="PackedScene" uid="uid://dq1m7stg5vvah" path="res://objects/player Obj/birju.tscn" id="1_6h1ka"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rey7r"]
-size = Vector2(1159, 662)
+size = Vector2(1562.3, 873.048)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aywfk"]
-size = Vector2(20, 659)
+size = Vector2(17.2553, 865.793)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7xttc"]
-size = Vector2(27, 648)
+size = Vector2(26.6025, 873.048)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d7o5b"]
-size = Vector2(1177, 160)
+size = Vector2(1559.88, 191.709)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_foj8f"]
 size = Vector2(141, 244)
 
 [node name="OpeningCutscene" type="Node2D"]
+scale = Vector2(0.745, 0.745)
 
 [node name="Room" type="Area2D" parent="."]
+scale = Vector2(0.745, 0.745)
 
 [node name="RoomArea" type="CollisionShape2D" parent="Room"]
-position = Vector2(580, 331)
+position = Vector2(580.154, 323.409)
+scale = Vector2(0.745, 0.745)
 shape = SubResource("RectangleShape2D_rey7r")
 debug_color = Color(0.784314, 0.796078, 0.784314, 0.419608)
 
 [node name="CollisionShapes" type="StaticBody2D" parent="."]
+scale = Vector2(0.745, 0.745)
 
 [node name="LeftWall" type="CollisionShape2D" parent="CollisionShapes"]
-position = Vector2(0, 319.5)
+position = Vector2(1.02242, 322.508)
+scale = Vector2(0.745, 0.745)
 shape = SubResource("RectangleShape2D_aywfk")
 
 [node name="RightWall" type="CollisionShape2D" parent="CollisionShapes"]
-position = Vector2(1153.5, 321)
+position = Vector2(1155.8, 325.211)
+scale = Vector2(0.745, 0.745)
 shape = SubResource("RectangleShape2D_7xttc")
 
 [node name="Floor" type="CollisionShape2D" parent="CollisionShapes"]
-position = Vector2(578.5, 569)
+position = Vector2(579.253, 580.812)
+scale = Vector2(0.745, 0.745)
 shape = SubResource("RectangleShape2D_d7o5b")
 debug_color = Color(0.513726, 0.0431373, 0.0862745, 0.419608)
 
 [node name="Door" type="Area2D" parent="CollisionShapes"]
+scale = Vector2(0.745, 0.745)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionShapes/Door"]
-position = Vector2(903.5, 366)
-scale = Vector2(1.02234, 1)
+position = Vector2(1233.39, 587.675)
+scale = Vector2(0.745, 0.745)
 shape = SubResource("RectangleShape2D_foj8f")
 debug_color = Color(0, 0.647059, 0.180392, 0.419608)
 
 [node name="Robot" parent="." instance=ExtResource("1_6h1ka")]
-position = Vector2(119, 378)
+position = Vector2(162.416, 312.752)
 
 [connection signal="body_entered" from="Room" to="Robot" method="_on_room_body_entered"]
 [connection signal="body_entered" from="CollisionShapes/Door" to="Robot" method="_on_door_body_entered"]

@@ -28,9 +28,11 @@ func _physics_process(delta):
 	# Call the methods on the player_Motion instance
 	if Input.is_action_just_pressed("dodge"):
 		dodge._dodge(dodgedur)
+	if Input.is_action_just_pressed("attack"):
+		attack("sword")
 	if dodge._is_dodging():
 		emit_signal("_is_invincible")
-
+	
 	player_Motion.get_gravity(delta,$".")
 	direction = Input.get_vector("left","right","jump","down").normalized()
 	if cutscene:
@@ -54,6 +56,10 @@ func updateAnimParams():
 	print(direction)
 	animtree["parameters/Run/blend_position"] = direction
 	animtree["parameters/Idle/blend_position"] = direction
+
+
+func attack(weapon):
+	print(weapon)
 
 func _on_room_body_entered(body):
 	if body == get_node(".") :
@@ -81,4 +87,5 @@ func _on_dialogue_handler_dialogue_ended():
 	cutscene = false
 	dialogueBoxSprite.visible = false
 
-
+# TODO
+# add take_damage fnunction to the boss
