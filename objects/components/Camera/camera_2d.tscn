@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://ehre83i61mj4"]
+
+[node name="Camera2D" type="Camera2D"]
+limit_left = -150
+limit_top = -120
+limit_right = 1275
+limit_bottom = 650
+editor_draw_limits = true

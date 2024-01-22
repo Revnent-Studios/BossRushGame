@@ -1,8 +1,315 @@
-[gd_scene load_steps=3 format=3 uid="uid://dq1m7stg5vvah"]
+[gd_scene load_steps=26 format=3 uid="uid://dq1m7stg5vvah"]
 
 [ext_resource type="Script" path="res://objects/player Obj/birju.gd" id="1_np6y4"]
+[ext_resource type="PackedScene" uid="uid://detrmwmauvbo2" path="res://objects/components/dodge/Dodge.tscn" id="2_cjlee"]
+[ext_resource type="Texture2D" uid="uid://5c6ck8cul23f" path="res://objects/player Obj/Birju.png" id="3_pcrm4"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ou7fn"]
+radius = 5.0
+height = 25.6
+
+[sub_resource type="Animation" id="Animation_4m4wc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Birju:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Birju:frame_coords")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(15, 3)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WeaponHitbox/Hitbox:shape:size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(65, 120)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("WeaponHitbox/Hitbox:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_3vm8j"]
+resource_name = "idle"
+length = 1.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Birju:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+}
+
+[sub_resource type="Animation" id="Animation_lggir"]
+resource_name = "run"
+length = 0.8
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Birju:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 1,
+"values": []
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Birju:frame_coords")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.102592, 0.154743, 0.205184, 0.256481, 0.306922, 0.354801, 0.405242, 0.453121, 0.504982, 0.556423, 0.606423, 0.656423, 0.706423, 0.756423),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1), Vector2i(3, 1), Vector2i(4, 1), Vector2i(5, 1), Vector2i(6, 1), Vector2i(7, 1), Vector2i(8, 1), Vector2i(9, 1), Vector2i(10, 1), Vector2i(11, 1), Vector2i(12, 1), Vector2i(13, 1), Vector2i(14, 1), Vector2i(15, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_5xikj"]
+resource_name = "run_flip"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Birju:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 1,
+"values": []
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Birju:frame_coords")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.053005, 0.105156, 0.153034, 0.20433, 0.252208, 0.303504, 0.355655, 0.403533, 0.455684, 0.504417, 0.551441, 0.601028, 0.651469, 0.702765, 0.750644),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(15, 3), Vector2i(14, 3), Vector2i(13, 3), Vector2i(12, 3), Vector2i(11, 3), Vector2i(10, 3), Vector2i(9, 3), Vector2i(8, 3), Vector2i(7, 3), Vector2i(6, 3), Vector2i(5, 3), Vector2i(4, 3), Vector2i(3, 3), Vector2i(2, 3), Vector2i(1, 3), Vector2i(0, 3)]
+}
+
+[sub_resource type="Animation" id="Animation_vpped"]
+resource_name = "attack_sword_1"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Birju:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 1,
+"values": []
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Birju:frame_coords")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WeaponHitbox/Hitbox:shape:size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(65, 120)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("WeaponHitbox/Hitbox:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.0424, 0.1586),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_r1k01"]
+resource_name = "attack_sword_2"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Birju:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 1,
+"values": []
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Birju:frame_coords")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WeaponHitbox/Hitbox:shape:size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(54.3499, 121.411)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("WeaponHitbox/Hitbox:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.045, 0.173),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4dxaj"]
+_data = {
+"RESET": SubResource("Animation_4m4wc"),
+"attack_sword_1": SubResource("Animation_vpped"),
+"attack_sword_2": SubResource("Animation_r1k01"),
+"idle": SubResource("Animation_3vm8j"),
+"run": SubResource("Animation_lggir"),
+"run_flip": SubResource("Animation_5xikj")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rv0tf"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7sumr"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_eifn4"]
+animation = &"idle_flip"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2do2h"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_j5j64"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_rv0tf")
+blend_point_0/pos = Vector2(0, 1)
+blend_point_1/node = SubResource("AnimationNodeAnimation_7sumr")
+blend_point_1/pos = Vector2(0, 0)
+blend_point_2/node = SubResource("AnimationNodeAnimation_eifn4")
+blend_point_2/pos = Vector2(-1, 0)
+blend_point_3/node = SubResource("AnimationNodeAnimation_2do2h")
+blend_point_3/pos = Vector2(1, 0)
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mvtus"]
+animation = &"run_flip"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pgiou"]
+animation = &"run"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8d258"]
+animation = &"run_flip"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_7kyi1"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_mvtus")
+blend_point_0/pos = Vector2(-1, 0)
+blend_point_1/node = SubResource("AnimationNodeAnimation_pgiou")
+blend_point_1/pos = Vector2(1, 0)
+blend_point_2/node = SubResource("AnimationNodeAnimation_8d258")
+blend_point_2/pos = Vector2(1, -1)
+blend_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_r6l5p"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_l5c4p"]
+advance_mode = 2
+advance_condition = &"running"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7y7o8"]
+advance_mode = 2
+advance_condition = &"idle"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_f4d4y"]
+states/Idle/node = SubResource("AnimationNodeBlendSpace2D_j5j64")
+states/Idle/position = Vector2(445, 100)
+states/Run/node = SubResource("AnimationNodeBlendSpace2D_7kyi1")
+states/Run/position = Vector2(669, 100)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_r6l5p"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_l5c4p"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_7y7o8")]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fuev8"]
+size = Vector2(65, 120)
 
 [node name="Robot" type="CharacterBody2D"]
 script = ExtResource("1_np6y4")
@@ -10,3 +317,37 @@ script = ExtResource("1_np6y4")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(5, 5)
 shape = SubResource("CapsuleShape2D_ou7fn")
+
+[node name="Dodge" parent="." instance=ExtResource("2_cjlee")]
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+active = false
+libraries = {
+"": SubResource("AnimationLibrary_4dxaj")
+}
+tree_root = SubResource("AnimationNodeStateMachine_f4d4y")
+anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/idle = false
+parameters/conditions/running = false
+parameters/Idle/blend_position = Vector2(0.0597484, -0.0925111)
+parameters/Run/blend_position = Vector2(0, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_4dxaj")
+}
+speed_scale = 1.42
+
+[node name="Birju" type="Sprite2D" parent="."]
+position = Vector2(-2, -4)
+texture = ExtResource("3_pcrm4")
+hframes = 16
+vframes = 4
+frame = 63
+
+[node name="WeaponHitbox" type="Area2D" parent="."]
+
+[node name="Hitbox" type="CollisionShape2D" parent="WeaponHitbox"]
+position = Vector2(48.9556, -6.71463)
+rotation = 0.303687
+shape = SubResource("RectangleShape2D_fuev8")

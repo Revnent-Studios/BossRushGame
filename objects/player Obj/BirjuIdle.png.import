@@ -1,0 +1,14 @@
+[remap]
+
+importer="image"
+type="Image"
+uid="uid://bq10ly5lkwyua"
+path="res://.godot/imported/BirjuIdle.png-e0a0e824c0ad1197f57a93509254ca84.image"
+
+[deps]
+
+source_file="res://objects/player Obj/BirjuIdle.png"
+dest_files=["res://.godot/imported/BirjuIdle.png-e0a0e824c0ad1197f57a93509254ca84.image"]
+
+[params]
+
