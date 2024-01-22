@@ -52,6 +52,8 @@ debug_color = Color(0.384314, 0.105882, 0.156863, 0.419608)
 [node name="birju" parent="." instance=ExtResource("1_sxsgg")]
 position = Vector2(216, 536)
 
+[node name="Camera2D" type="Camera2D" parent="birju"]
+
 [node name="worldObstacle" type="StaticBody2D" parent="."]
 
 [node name="obstacle1" type="CollisionShape2D" parent="worldObstacle"]

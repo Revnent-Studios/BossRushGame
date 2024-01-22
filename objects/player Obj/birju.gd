@@ -7,11 +7,11 @@ var cutscene = false
 var player_Motion : Movement
 var dodge
 var dodgedur = 0.2
+var timer
 var direction : Vector2 = Vector2.ZERO
 @onready var animtree : AnimationTree = $AnimationTree
+@onready var animplayer: AnimationPlayer = $AnimationPlayer
 
-
-signal _is_invincible
 
 func _ready():
 	# Instantiate the Movement class
@@ -20,6 +20,7 @@ func _ready():
 	# Add the Movement instance as a child of the current node
 	# Turns animation tree on
 	animtree.active = true
+	$WeaponHitbox/Hitbox.disabled = true
 
 func _process(delta):
 	updateAnimParams()
@@ -47,19 +48,29 @@ func _physics_process(delta):
 	move_and_slide()
 
 func updateAnimParams():
+	
 	if velocity == Vector2.ZERO:
 		animtree["parameters/conditions/idle"] = true
 		animtree["parameters/conditions/running"] = false
 	else:
 		animtree["parameters/conditions/idle"] = false
 		animtree["parameters/conditions/running"] = true
-	print(direction)
+	if Input.is_action_just_pressed("attack"):
+		animtree["parameters/conditions/attacking"] = true
+		print("anim start")
+		await get_tree().create_timer(0.2).timeout
+		print("anim end")
+		animtree["parameters/conditions/attacking"] = false
+		
 	animtree["parameters/Run/blend_position"] = direction
 	animtree["parameters/Idle/blend_position"] = direction
+	animtree["parameters/Attack/blend_position"] = direction
 
 
 func attack(weapon):
-	print(weapon)
+	#if Input.is_action_just_pressed("attack"):
+	#	animplayer.play("attack_sword_1", 1, 1)
+	pass
 
 func _on_room_body_entered(body):
 	if body == get_node(".") :
