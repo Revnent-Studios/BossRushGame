@@ -55,6 +55,7 @@ func updateAnimParams():
 	else:
 		animtree["parameters/conditions/idle"] = false
 		animtree["parameters/conditions/running"] = true
+<<<<<<< Updated upstream
 	if Input.is_action_just_pressed("attack"):
 		animtree["parameters/conditions/attacking"] = true
 		print("anim start")
@@ -62,6 +63,8 @@ func updateAnimParams():
 		print("anim end")
 		animtree["parameters/conditions/attacking"] = false
 		
+=======
+>>>>>>> Stashed changes
 	animtree["parameters/Run/blend_position"] = direction
 	animtree["parameters/Idle/blend_position"] = direction
 	animtree["parameters/Attack/blend_position"] = direction
@@ -85,7 +88,7 @@ func _on_door_body_entered(body):
 
 
 func _on_detection_body_entered(body):
-	var dialogueBoxSprite = $"../DialogueHandler"
+	var dialogueBoxSprite = $DialogueHandler
 	if body == get_node("."):
 		#change the cutscene to false after deleting scooter's field with freequeue
 		cutscene = true
@@ -94,7 +97,7 @@ func _on_detection_body_entered(body):
 
 
 func _on_dialogue_handler_dialogue_ended():
-	var dialogueBoxSprite = $"../DialogueHandler"
+	var dialogueBoxSprite = $DialogueHandler
 	cutscene = false
 	dialogueBoxSprite.visible = false
 
