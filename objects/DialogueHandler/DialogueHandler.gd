@@ -1,7 +1,7 @@
 extends Control
 
 @onready var label = $Panel/Label
-@onready var birju = $"../Robot"
+@onready var birju = $".."
 var dialogueCount = 1
 var allowF = false
 
@@ -30,15 +30,15 @@ func _process(delta):
 			else:
 				dialogueCount = 1
 				emit_signal("dialogueEnded")
-				$"../Scooter/Detection".queue_free()
+				$"../../Scooter/Detection".queue_free()
 
 
 
 func _on_detection_body_entered(body):
-	if body == $"../Robot":
+	if body == $"..":
 		allowF = true
 
 
 func _on_detection_body_exited(body):
-	if body == $"../Robot":
+	if body == $"..":
 		allowF = false
