@@ -55,16 +55,12 @@ func updateAnimParams():
 	else:
 		animtree["parameters/conditions/idle"] = false
 		animtree["parameters/conditions/running"] = true
-<<<<<<< Updated upstream
 	if Input.is_action_just_pressed("attack"):
 		animtree["parameters/conditions/attacking"] = true
 		print("anim start")
 		await get_tree().create_timer(0.2).timeout
 		print("anim end")
 		animtree["parameters/conditions/attacking"] = false
-		
-=======
->>>>>>> Stashed changes
 	animtree["parameters/Run/blend_position"] = direction
 	animtree["parameters/Idle/blend_position"] = direction
 	animtree["parameters/Attack/blend_position"] = direction
