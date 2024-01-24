@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://pkfcgg6y0770"]
+
+[ext_resource type="Script" path="res://objects/world1 Obj/warden.gd" id="1_onenv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e3jhe"]
+size = Vector2(71, 135)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ylb0p"]
+
+[node name="Warden" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_onenv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(34.5, 70.5)
+shape = SubResource("RectangleShape2D_e3jhe")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(34.75, 69.25)
+scale = Vector2(70.5, 139.5)
+texture = SubResource("PlaceholderTexture2D_ylb0p")

@@ -13,6 +13,7 @@ var facing : Vector2 = Vector2.ZERO
 @onready var animtree : AnimationTree = $AnimationTree
 @onready var animplayer: AnimationPlayer = $AnimationPlayer
 
+signal weaponHit
 
 func _ready():
 	# Instantiate the Movement class
@@ -63,18 +64,14 @@ func updateAnimParams():
 		animtree["parameters/conditions/running"] = true
 	if Input.is_action_just_pressed("attack"):
 		animtree["parameters/conditions/attacking"] = true
-		print("anim start")
 		await get_tree().create_timer(0.2).timeout
-		print("anim end")
 		animtree["parameters/conditions/attacking"] = false
 	animtree["parameters/Run/blend_position"] = direction
 	animtree["parameters/Idle/blend_position"] = facing
-	animtree["parameters/Attack/blend_position"] = direction
+	animtree["parameters/Attack/blend_position"] = facing
 
 
 func attack(weapon):
-	#if Input.is_action_just_pressed("attack"):
-	#	animplayer.play("attack_sword_1", 1, 1)
 	pass
 
 func _on_room_body_entered(body):
@@ -82,12 +79,8 @@ func _on_room_body_entered(body):
 		indoors = true
 		player_Motion.speed = 225
 
-
 func _on_door_body_entered(body):
 	get_tree().change_scene_to_file("res://objects/cutscenes/OpeningCutscene/ScootersWorkshop.tscn")
-	
-
-
 
 func _on_detection_body_entered(body):
 	var dialogueBoxSprite = $DialogueHandler
@@ -95,13 +88,14 @@ func _on_detection_body_entered(body):
 		#change the cutscene to false after deleting scooter's field with freequeue
 		cutscene = true
 		dialogueBoxSprite.visible = true
-		
-
 
 func _on_dialogue_handler_dialogue_ended():
 	var dialogueBoxSprite = $DialogueHandler
 	cutscene = false
 	dialogueBoxSprite.visible = false
 
-# TODO
-# add take_damage fnunction to the boss
+
+func _on_weapon_hitbox_body_entered(body):
+	if(body==$"../Warden"):
+		print("waaa")
+		emit_signal("weaponHit")

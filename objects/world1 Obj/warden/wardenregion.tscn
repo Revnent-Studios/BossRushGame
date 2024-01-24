@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://dmappqbboniol"]
+[gd_scene load_steps=8 format=3 uid="uid://dmappqbboniol"]
 
 [ext_resource type="Texture2D" uid="uid://ci5gxarfg3p4p" path="res://objects/world1 Obj/warden/factory/road.png" id="1_4kx0l"]
 [ext_resource type="PackedScene" uid="uid://c8wevjk5civyh" path="res://parallaxfactory.tscn" id="2_aep2x"]
 [ext_resource type="PackedScene" uid="uid://dq1m7stg5vvah" path="res://objects/player Obj/birju.tscn" id="3_jojdo"]
 [ext_resource type="PackedScene" uid="uid://ehre83i61mj4" path="res://objects/components/Camera/camera_2d.tscn" id="4_udynv"]
+[ext_resource type="PackedScene" uid="uid://pkfcgg6y0770" path="res://objects/world1 Obj/warden.tscn" id="5_bbo00"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pnjc7"]
 size = Vector2(1700, 140)
@@ -14,6 +15,8 @@ size = Vector2(31, 368)
 [node name="Wardenregion" type="Node2D"]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 3
+collision_mask = 3
 
 [node name="floor" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(849, 300)
@@ -46,8 +49,13 @@ texture = ExtResource("1_4kx0l")
 
 [node name="Parallaxfactory" parent="." instance=ExtResource("2_aep2x")]
 
+[node name="Warden" parent="." instance=ExtResource("5_bbo00")]
+position = Vector2(206, 66)
+
 [node name="Robot" parent="." instance=ExtResource("3_jojdo")]
 position = Vector2(57, 170)
 
 [node name="Camera2D" parent="Robot" instance=ExtResource("4_udynv")]
 limit_right = 1865
+
+[connection signal="weaponHit" from="Robot" to="Warden" method="_on_robot_weapon_hit"]

@@ -404,6 +404,35 @@ tracks/0/keys = {
 "values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
 }
 
+[sub_resource type="Animation" id="Animation_t0vci"]
+resource_name = "idle_flip"
+length = 1.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Birju:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 1,
+"values": []
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Birju:frame_coords")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 2), Vector2i(1, 2), Vector2i(2, 2), Vector2i(3, 2), Vector2i(4, 2), Vector2i(5, 2), Vector2i(6, 2), Vector2i(7, 2), Vector2i(8, 2), Vector2i(9, 2), Vector2i(10, 2), Vector2i(11, 2), Vector2i(12, 2), Vector2i(13, 2), Vector2i(14, 2)]
+}
+
 [sub_resource type="Animation" id="Animation_lggir"]
 resource_name = "run"
 length = 0.8
@@ -461,35 +490,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [Vector2i(15, 3), Vector2i(14, 3), Vector2i(13, 3), Vector2i(12, 3), Vector2i(11, 3), Vector2i(10, 3), Vector2i(9, 3), Vector2i(8, 3), Vector2i(7, 3), Vector2i(6, 3), Vector2i(5, 3), Vector2i(4, 3), Vector2i(3, 3), Vector2i(2, 3), Vector2i(1, 3), Vector2i(0, 3)]
-}
-
-[sub_resource type="Animation" id="Animation_t0vci"]
-resource_name = "idle_flip"
-length = 1.5
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Birju:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"update": 1,
-"values": []
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Birju:frame_coords")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [Vector2i(0, 2), Vector2i(1, 2), Vector2i(2, 2), Vector2i(3, 2), Vector2i(4, 2), Vector2i(5, 2), Vector2i(6, 2), Vector2i(7, 2), Vector2i(8, 2), Vector2i(9, 2), Vector2i(10, 2), Vector2i(11, 2), Vector2i(12, 2), Vector2i(13, 2), Vector2i(14, 2)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4dxaj"]
@@ -575,7 +575,7 @@ advance_condition = &"running"
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_f4d4y"]
 states/Attack/node = SubResource("AnimationNodeBlendSpace2D_bewnd")
-states/Attack/position = Vector2(664, 77)
+states/Attack/position = Vector2(664, 74)
 states/End/position = Vector2(1011, 186)
 states/Idle/node = SubResource("AnimationNodeBlendSpace2D_j5j64")
 states/Idle/position = Vector2(556, 186)
@@ -607,7 +607,7 @@ parameters/conditions/attacking = false
 parameters/conditions/idle = false
 parameters/conditions/running = false
 parameters/Attack/blend_position = Vector2(-0.9952, 0.00348425)
-parameters/Idle/blend_position = Vector2(-0.00160003, 0.991453)
+parameters/Idle/blend_position = Vector2(-0.4848, -0.0899471)
 parameters/Run/blend_position = Vector2(0, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -620,12 +620,16 @@ speed_scale = 1.42
 position = Vector2(-2, -4)
 texture = ExtResource("3_pcrm4")
 hframes = 16
-vframes = 4
+vframes = 5
 frame = 63
 
 [node name="WeaponHitbox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
 
 [node name="Hitbox" type="CollisionShape2D" parent="WeaponHitbox"]
 position = Vector2(-65, -5)
 rotation = 0.303687
 shape = SubResource("RectangleShape2D_fuev8")
+
+[connection signal="body_entered" from="WeaponHitbox" to="." method="_on_weapon_hitbox_body_entered"]
