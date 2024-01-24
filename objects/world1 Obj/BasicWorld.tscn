@@ -1,0 +1,42 @@
+[gd_scene load_steps=4 format=3 uid="uid://brhqugsu6ojbd"]
+
+[ext_resource type="Texture2D" uid="uid://ci5gxarfg3p4p" path="res://objects/world1 Obj/warden/factory/road.png" id="1_ei85o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ryi5r"]
+size = Vector2(1700, 140)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_377mq"]
+size = Vector2(31, 368)
+
+[node name="Wardenregion" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="floor" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(849, 300)
+shape = SubResource("RectangleShape2D_ryi5r")
+debug_color = Color(0.776471, 0.427451, 0.286275, 0.419608)
+
+[node name="leftwall" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-16, 188)
+shape = SubResource("RectangleShape2D_377mq")
+
+[node name="rightwall" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1716, 173)
+shape = SubResource("RectangleShape2D_377mq")
+
+[node name="Road" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(-321, 186)
+texture = ExtResource("1_ei85o")
+
+[node name="Road4" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(318, 186)
+texture = ExtResource("1_ei85o")
+
+[node name="Road2" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(958, 186)
+texture = ExtResource("1_ei85o")
+
+[node name="Road3" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(1595, 186)
+texture = ExtResource("1_ei85o")

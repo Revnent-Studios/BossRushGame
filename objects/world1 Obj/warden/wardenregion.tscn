@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=3 uid="uid://dmappqbboniol"]
+
+[ext_resource type="Texture2D" uid="uid://ci5gxarfg3p4p" path="res://objects/world1 Obj/warden/factory/road.png" id="1_4kx0l"]
+[ext_resource type="PackedScene" uid="uid://c8wevjk5civyh" path="res://parallaxfactory.tscn" id="2_aep2x"]
+[ext_resource type="PackedScene" uid="uid://dq1m7stg5vvah" path="res://objects/player Obj/birju.tscn" id="3_jojdo"]
+[ext_resource type="PackedScene" uid="uid://ehre83i61mj4" path="res://objects/components/Camera/camera_2d.tscn" id="4_udynv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pnjc7"]
+size = Vector2(1700, 140)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ixrtq"]
+size = Vector2(31, 368)
+
+[node name="Wardenregion" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="floor" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(849, 300)
+shape = SubResource("RectangleShape2D_pnjc7")
+debug_color = Color(0.776471, 0.427451, 0.286275, 0.419608)
+
+[node name="leftwall" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-16, 188)
+shape = SubResource("RectangleShape2D_ixrtq")
+
+[node name="rightwall" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1716, 173)
+shape = SubResource("RectangleShape2D_ixrtq")
+
+[node name="Road" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(-321, 186)
+texture = ExtResource("1_4kx0l")
+
+[node name="Road4" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(318, 186)
+texture = ExtResource("1_4kx0l")
+
+[node name="Road2" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(958, 186)
+texture = ExtResource("1_4kx0l")
+
+[node name="Road3" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(1595, 186)
+texture = ExtResource("1_4kx0l")
+
+[node name="Parallaxfactory" parent="." instance=ExtResource("2_aep2x")]
+
+[node name="Robot" parent="." instance=ExtResource("3_jojdo")]
+position = Vector2(57, 170)
+
+[node name="Camera2D" parent="Robot" instance=ExtResource("4_udynv")]
