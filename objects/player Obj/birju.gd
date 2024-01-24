@@ -9,6 +9,7 @@ var dodge
 var dodgedur = 0.2
 var timer
 var direction : Vector2 = Vector2.ZERO
+var facing : Vector2 = Vector2.ZERO
 @onready var animtree : AnimationTree = $AnimationTree
 @onready var animplayer: AnimationPlayer = $AnimationPlayer
 
@@ -36,6 +37,11 @@ func _physics_process(delta):
 	
 	player_Motion.get_gravity(delta,$".")
 	direction = Input.get_vector("left","right","jump","down").normalized()
+	if(direction[0]>0):
+		facing.x = 1
+	elif(direction[0]<0):
+		facing.x = -1
+	
 	if cutscene:
 		velocity.x = 0
 	if not cutscene:
@@ -62,7 +68,7 @@ func updateAnimParams():
 		print("anim end")
 		animtree["parameters/conditions/attacking"] = false
 	animtree["parameters/Run/blend_position"] = direction
-	animtree["parameters/Idle/blend_position"] = direction
+	animtree["parameters/Idle/blend_position"] = facing
 	animtree["parameters/Attack/blend_position"] = direction
 
 

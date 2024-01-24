@@ -50,3 +50,4 @@ texture = ExtResource("1_4kx0l")
 position = Vector2(57, 170)
 
 [node name="Camera2D" parent="Robot" instance=ExtResource("4_udynv")]
+limit_right = 1865
