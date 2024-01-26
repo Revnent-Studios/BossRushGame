@@ -55,20 +55,30 @@ func _physics_process(delta):
 	move_and_slide()
 
 func updateAnimParams():
-	
 	if velocity == Vector2.ZERO:
 		animtree["parameters/conditions/idle"] = true
 		animtree["parameters/conditions/running"] = false
-	else:
+	elif(velocity.x!=0):
 		animtree["parameters/conditions/idle"] = false
 		animtree["parameters/conditions/running"] = true
 	if Input.is_action_just_pressed("attack"):
 		animtree["parameters/conditions/attacking"] = true
 		await get_tree().create_timer(0.2).timeout
 		animtree["parameters/conditions/attacking"] = false
-	animtree["parameters/Run/blend_position"] = direction
+	if Input.is_action_just_pressed("jump"):
+		animtree["parameters/conditions/jumping"] = true
+	if $".".velocity.y>0:
+		animtree["parameters/conditions/jumping"] = false
+		animtree["parameters/conditions/falling"] = true
+	if $".".is_on_floor():
+		print("On Floor")
+		animtree["parameters/conditions/falling"] = false
+	
+	animtree["parameters/Run/blend_position"] = facing
 	animtree["parameters/Idle/blend_position"] = facing
 	animtree["parameters/Attack/blend_position"] = facing
+	animtree["parameters/Jump/blend_position"] = facing
+	animtree["parameters/Fall/blend_position"] = facing
 
 
 func attack(weapon):
