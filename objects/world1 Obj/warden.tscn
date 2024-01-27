@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://pkfcgg6y0770"]
+[gd_scene load_steps=6 format=3 uid="uid://pkfcgg6y0770"]
 
 [ext_resource type="Script" path="res://objects/world1 Obj/warden.gd" id="1_onenv"]
 [ext_resource type="Texture2D" uid="uid://bk0t2atfbvnkt" path="res://objects/world1 Obj/warden/warden.png" id="2_m2leq"]
+[ext_resource type="Script" path="res://objects/world1 Obj/StateMachine.gd" id="3_1h3qh"]
+[ext_resource type="Script" path="res://objects/components/State.gd" id="4_elr2q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e3jhe"]
 size = Vector2(71, 135)
@@ -20,3 +22,28 @@ position = Vector2(34, 68)
 rotation = -6.28319
 scale = Vector2(0.295, 0.295)
 texture = ExtResource("2_m2leq")
+
+[node name="StateMachine" type="Node2D" parent="."]
+script = ExtResource("3_1h3qh")
+
+[node name="Follow" type="Node2D" parent="StateMachine"]
+script = ExtResource("4_elr2q")
+
+[node name="BatonStrike" type="Node2D" parent="StateMachine"]
+script = ExtResource("4_elr2q")
+
+[node name="Guns" type="Node2D" parent="StateMachine"]
+script = ExtResource("4_elr2q")
+
+[node name="Charge" type="Node2D" parent="StateMachine"]
+script = ExtResource("4_elr2q")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="Label" type="Label" parent="."]
+offset_left = 14.0
+offset_top = -33.0
+offset_right = 54.0
+offset_bottom = -10.0
+text = "label
+"
