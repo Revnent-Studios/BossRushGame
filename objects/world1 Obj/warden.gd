@@ -25,7 +25,6 @@ func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y += gravity * delta
 	
-	# Have Pratyush look at this	
 	if !activity:
 		var direction = birju.position.x - $".".position.x
 		if(direction>0):

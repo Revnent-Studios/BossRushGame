@@ -60,19 +60,24 @@ func updateAnimParams():
 		animtree["parameters/conditions/running"] = false
 	elif(velocity.x!=0):
 		animtree["parameters/conditions/idle"] = false
-		animtree["parameters/conditions/running"] = true
+		if $".".is_on_floor():
+			print("Running")
+			animtree["parameters/conditions/running"] = true
 	if Input.is_action_just_pressed("attack"):
 		animtree["parameters/conditions/attacking"] = true
 		await get_tree().create_timer(0.2).timeout
 		animtree["parameters/conditions/attacking"] = false
 	if Input.is_action_just_pressed("jump"):
 		animtree["parameters/conditions/jumping"] = true
+		animtree["parameters/conditions/running"] = false
 	if $".".velocity.y>0:
 		animtree["parameters/conditions/jumping"] = false
 		animtree["parameters/conditions/falling"] = true
+		animtree["parameters/conditions/running"] = false
 	if $".".is_on_floor():
-		print("On Floor")
 		animtree["parameters/conditions/falling"] = false
+	else:
+		print("In air")
 	
 	animtree["parameters/Run/blend_position"] = facing
 	animtree["parameters/Idle/blend_position"] = facing
@@ -107,5 +112,4 @@ func _on_dialogue_handler_dialogue_ended():
 
 func _on_weapon_hitbox_body_entered(body):
 	if(body==$"../Warden"):
-		print("waaa")
 		emit_signal("weaponHit")
