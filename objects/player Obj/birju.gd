@@ -61,7 +61,6 @@ func updateAnimParams():
 	elif(velocity.x!=0):
 		animtree["parameters/conditions/idle"] = false
 		if $".".is_on_floor():
-			print("Running")
 			animtree["parameters/conditions/running"] = true
 	if Input.is_action_just_pressed("attack"):
 		animtree["parameters/conditions/attacking"] = true
@@ -76,8 +75,6 @@ func updateAnimParams():
 		animtree["parameters/conditions/running"] = false
 	if $".".is_on_floor():
 		animtree["parameters/conditions/falling"] = false
-	else:
-		print("In air")
 	
 	animtree["parameters/Run/blend_position"] = facing
 	animtree["parameters/Idle/blend_position"] = facing
