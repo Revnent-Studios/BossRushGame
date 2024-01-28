@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bk0t2atfbvnkt"
-path="res://.godot/imported/Warden.png-f332801221dda512d29d3059d8509926.ctex"
+uid="uid://6xgd02bbc18y"
+path="res://.godot/imported/wardenwalrref.png-e0b2323da46ebecb8a85ad3008566877.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://objects/world1 Obj/warden/Warden.png"
-dest_files=["res://.godot/imported/Warden.png-f332801221dda512d29d3059d8509926.ctex"]
+source_file="res://objects/world1 Obj/warden/wardenwalrref.png"
+dest_files=["res://.godot/imported/wardenwalrref.png-e0b2323da46ebecb8a85ad3008566877.ctex"]
 
 [params]
 
