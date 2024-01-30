@@ -50,10 +50,10 @@ texture = ExtResource("1_4kx0l")
 [node name="Parallaxfactory" parent="." instance=ExtResource("2_aep2x")]
 
 [node name="Warden" parent="." instance=ExtResource("5_bbo00")]
-position = Vector2(1027, 66)
+position = Vector2(447, 87)
 
 [node name="Robot" parent="." instance=ExtResource("3_jojdo")]
-position = Vector2(57, 170)
+position = Vector2(1020, 125)
 
 [node name="Camera2D" parent="Robot" instance=ExtResource("4_udynv")]
 limit_right = 1865

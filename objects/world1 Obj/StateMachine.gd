@@ -5,6 +5,7 @@ var currentState : State
 
 @export var initstate : State
 
+
 func _ready():
 	
 	for child in get_children():

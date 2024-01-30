@@ -6,17 +6,30 @@ class_name Follow
 @onready var animation_tree = $"../../AnimationTree"
 
 var distance
-var facing = Vector2.ZERO
+
 
 func enter():
-	print("In Follow state rn")
+	animation_tree["parameters/conditions/walking"] = true
+	print("Entered follow state")
 
-func _process(delta):
+func update(delta):
 	follow()
+	
+func exit():
+	warden.flag = false
+	warden.velocity.x = 0
+	animation_tree["parameters/conditions/walking"] = false
+	print("Exited follow state")
 
 func follow():
 	distance = birju.position.x - warden.position.x
-	facing.x = distance
-	if(distance<50):
-		animation_tree["parameters/conditions/walking"] = true
-		animation_tree["parameters/Walk/blend_position"] = facing
+	if(distance > 0):
+		facing.x = 1
+	elif(distance<0):
+		facing.x = -1
+	animation_tree["parameters/conditions/walking"] = true
+	animation_tree["parameters/Walk/blend_position"] = facing
+	if(abs(distance)<50):
+		transition.emit(self,"Attack")
+
+	

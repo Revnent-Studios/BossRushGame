@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 
-const SPEED = 100.0
+const SPEED = 200.0
 const JUMP_VELOCITY = -400.0
 
 var warden = boss.new()
@@ -24,11 +24,11 @@ func _process(delta):
 		queue_free()
 
 func _physics_process(delta):
+	
+	# Add the gravity.
+	if not is_on_floor():
+		velocity.y += gravity * delta
 	if flag:
-		# Add the gravity.
-		if not is_on_floor():
-			velocity.y += gravity * delta
-		
 		if !activity:
 			var direction = birju.position.x - $".".position.x
 			if(direction>0):

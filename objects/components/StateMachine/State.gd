@@ -1,6 +1,7 @@
 extends Node
 class_name State
 
+var facing = Vector2.ZERO
 
 signal transition
 
