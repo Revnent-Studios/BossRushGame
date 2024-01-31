@@ -9,6 +9,7 @@ var distance
 
 
 func enter():
+	warden.flag = true
 	animation_tree["parameters/conditions/walking"] = true
 	print("Entered follow state")
 
@@ -31,5 +32,7 @@ func follow():
 	animation_tree["parameters/Walk/blend_position"] = facing
 	if(abs(distance)<50):
 		transition.emit(self,"Attack")
-
+	elif(abs(distance)>700):
+		print("It is time to dash NOW")
+		transition.emit(self,"Dash")
 	
