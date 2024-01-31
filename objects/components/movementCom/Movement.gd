@@ -7,7 +7,6 @@ const max_jump_velocity : float = -800.0
 const gravity : float = 1960.0
 var min_jump_velocity : float = -600.0
 
-# Internal Variables
 var jump_ability : int = 0
 
 func get_gravity(delta: float,player:CharacterBody2D) -> void:
@@ -31,7 +30,7 @@ func get_in(delta: float,player:CharacterBody2D) -> bool:
 func jump(delta: float,player:CharacterBody2D) -> void:
 	# Increase jump ability when jump is pressed
 	if Input.is_action_just_pressed("jump"):
-		jump_ability += 1
+		jump_ability = 1
 
 	# Adjust jump velocity when jump is held
 	if Input.is_action_pressed("jump") and min_jump_velocity > -800 and jump_ability < 1:
@@ -42,7 +41,7 @@ func jump(delta: float,player:CharacterBody2D) -> void:
 	# Reset jump ability when on the floor
 	if player.is_on_floor():
 		jump_ability = 0
-
+		
 	# Reset jump velocity when jump is released
 	if Input.is_action_just_released("jump"):
 		min_jump_velocity = 0.0
