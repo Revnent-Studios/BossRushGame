@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://bhgq18u0u5fm8"]
+
+[ext_resource type="PackedScene" uid="uid://bhbutqo00u12j" path="res://objects/world2/drone resources/parallaxdrone.tscn" id="2_mic08"]
+[ext_resource type="PackedScene" uid="uid://dq1m7stg5vvah" path="res://objects/player Obj/birju.tscn" id="3_c64g6"]
+[ext_resource type="Script" path="res://objects/world2/Camera2D.gd" id="3_st6hh"]
+[ext_resource type="PackedScene" uid="uid://cd8xhh3poh7bc" path="res://objects/world2/drone resources/Platform.tscn" id="5_xduyb"]
+[ext_resource type="Script" path="res://objects/world2/laserwall.gd" id="9_7mkvm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tsjfw"]
+size = Vector2(22, 375)
+
+[node name="Wardenregion" type="Node2D"]
+
+[node name="Parallaxhome" parent="." instance=ExtResource("2_mic08")]
+
+[node name="Robot" parent="." groups=["Player"] instance=ExtResource("3_c64g6")]
+position = Vector2(151, 163)
+
+[node name="laserwall" type="Node" parent="."]
+
+[node name="Area2D" type="Area2D" parent="laserwall"]
+position = Vector2(-24, 3)
+script = ExtResource("9_7mkvm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="laserwall/Area2D"]
+position = Vector2(1, 177.5)
+shape = SubResource("RectangleShape2D_tsjfw")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(58, 92)
+zoom = Vector2(0.8, 0.8)
+script = ExtResource("3_st6hh")
+
+[node name="Platform" parent="." instance=ExtResource("5_xduyb")]
+position = Vector2(193, 234)
+
+[node name="Platform2" parent="." instance=ExtResource("5_xduyb")]
+position = Vector2(72, 119)
+
+[node name="Platform3" parent="." instance=ExtResource("5_xduyb")]
+position = Vector2(519, 112)
+
+[node name="Platform4" parent="." instance=ExtResource("5_xduyb")]
+position = Vector2(394, 232)
+
+[connection signal="body_entered" from="laserwall/Area2D" to="laserwall/Area2D" method="_on_body_entered"]

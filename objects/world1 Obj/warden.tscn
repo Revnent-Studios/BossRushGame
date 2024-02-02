@@ -1,7 +1,7 @@
 [gd_scene load_steps=30 format=3 uid="uid://pkfcgg6y0770"]
 
 [ext_resource type="Script" path="res://objects/world1 Obj/warden.gd" id="1_onenv"]
-[ext_resource type="Texture2D" uid="uid://bk0t2atfbvnkt" path="res://objects/world1 Obj/warden/Warden.png" id="2_ayygx"]
+[ext_resource type="Texture2D" uid="uid://bk0t2atfbvnkt" path="res://objects/world1 Obj/warden/warden.png" id="2_ayygx"]
 [ext_resource type="Script" path="res://objects/world1 Obj/StateMachine.gd" id="3_1h3qh"]
 [ext_resource type="Script" path="res://objects/components/StateMachine/Follow.gd" id="4_pcd2j"]
 [ext_resource type="Script" path="res://objects/components/StateMachine/Attack.gd" id="5_brtah"]
