@@ -29,7 +29,6 @@ func _ready():
 func _process(delta):
 	updateAnimParams()
 	jumping = is_on_floor()
-	print(player_Motion.min_jump_velocity)
 	if(birjesh.getHealth()<=0):
 		queue_free()
 
@@ -61,7 +60,10 @@ func _physics_process(delta):
 	move_and_slide()
 
 func updateAnimParams():
-	if velocity == Vector2.ZERO:
+	animtree["parameters/conditions/idle"] = false
+	
+	
+	if velocity == Vector2.ZERO and !Input.is_anything_pressed():
 		animtree["parameters/conditions/idle"] = true
 		animtree["parameters/conditions/running"] = false
 	elif(velocity.x!=0):
@@ -73,10 +75,10 @@ func updateAnimParams():
 		await get_tree().create_timer(0.2).timeout
 		animtree["parameters/conditions/attacking"] = false
 	if Input.is_action_just_pressed("jump"):
-		if jumping: 
+		if jumping and player_Motion.jump_ability: 
 			animtree["parameters/conditions/jumping"] = true
 		animtree["parameters/conditions/running"] = false
-	if $".".velocity.y>0:
+	if $".".velocity.y>0 and !is_on_floor():
 		animtree["parameters/conditions/jumping"] = false
 		animtree["parameters/conditions/falling"] = true
 		animtree["parameters/conditions/running"] = false
