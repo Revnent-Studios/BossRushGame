@@ -10,6 +10,7 @@ var dodgedur = 0.2
 var timer
 var direction : Vector2 = Vector2.ZERO
 var facing : Vector2 = Vector2.ZERO
+var jumping 
 @onready var animtree : AnimationTree = $AnimationTree
 @onready var animplayer: AnimationPlayer = $AnimationPlayer
 
@@ -27,6 +28,7 @@ func _ready():
 
 func _process(delta):
 	updateAnimParams()
+	jumping = is_on_floor()
 	if(birjesh.getHealth()<=0):
 		queue_free()
 
@@ -70,7 +72,8 @@ func updateAnimParams():
 		await get_tree().create_timer(0.2).timeout
 		animtree["parameters/conditions/attacking"] = false
 	if Input.is_action_just_pressed("jump"):
-		animtree["parameters/conditions/jumping"] = true
+		if jumping: 
+			animtree["parameters/conditions/jumping"] = true
 		animtree["parameters/conditions/running"] = false
 	if $".".velocity.y>0:
 		animtree["parameters/conditions/jumping"] = false

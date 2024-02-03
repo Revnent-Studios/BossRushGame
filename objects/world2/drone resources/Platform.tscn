@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://cd8xhh3poh7bc"]
+
+[ext_resource type="Texture2D" uid="uid://dda28dxkiadoo" path="res://objects/world2/drone resources/Skullboss/blatform.png" id="1_mi50q"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_m84ey"]
+texture = ExtResource("1_mi50q")
+0:0/0 = 0
+1:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_phgod"]
+sources/0 = SubResource("TileSetAtlasSource_m84ey")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6w7r1"]
+size = Vector2(100, 13)
+
+[node name="Platform" type="StaticBody2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_phgod")
+format = 2
+layer_0/tile_data = PackedInt32Array(-2, 65536, 0, -1, 65536, 0, -65536, 65536, 0, -65535, 65536, 0, -3, 0, 0, -65534, 0, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_6w7r1")
+one_way_collision = true

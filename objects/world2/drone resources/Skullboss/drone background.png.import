@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bk0t2atfbvnkt"
-path="res://.godot/imported/warden.png-36cd28fe2ffa5883cceff7d1c0ede7c7.ctex"
+uid="uid://deipkgx7ri8rh"
+path="res://.godot/imported/drone background.png-fa4fc972f809577244ee562937ffeb6b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://objects/world1 Obj/warden/warden.png"
-dest_files=["res://.godot/imported/warden.png-36cd28fe2ffa5883cceff7d1c0ede7c7.ctex"]
+source_file="res://objects/world2/drone resources/Skullboss/drone background.png"
+dest_files=["res://.godot/imported/drone background.png-fa4fc972f809577244ee562937ffeb6b.ctex"]
 
 [params]
 
