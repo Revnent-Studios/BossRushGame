@@ -29,6 +29,7 @@ func _ready():
 func _process(delta):
 	updateAnimParams()
 	jumping = is_on_floor()
+	print(player_Motion.min_jump_velocity)
 	if(birjesh.getHealth()<=0):
 		queue_free()
 
