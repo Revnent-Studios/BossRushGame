@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 # Create an instance of the Movement class
-
+var birjesh = boss.new()
 var indoors = false
 var cutscene = false
 var player_Motion : Movement
@@ -24,10 +24,13 @@ func _ready():
 	# Turns animation tree on
 	animtree.active = true
 	$WeaponHitbox/Hitbox.disabled = true
+	birjesh.setHealth(100)
 
 func _process(delta):
 	updateAnimParams()
 	jumping = is_on_floor()
+	if(birjesh.getHealth()<=0):
+		queue_free()
 
 func _physics_process(delta):
 	# Call the methods on the player_Motion instance
@@ -50,7 +53,7 @@ func _physics_process(delta):
 	if not cutscene:
 		player_Motion.get_in(delta,$".")
 	if not indoors and not cutscene:
-		player_Motion.jump(delta,$".")
+			player_Motion.jump(delta,$".")
 	
 	
 	# Continue with your other physics process logic
