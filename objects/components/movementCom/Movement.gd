@@ -48,6 +48,7 @@ func jump(delta: float,player:CharacterBody2D) -> void:
 	if player.is_on_floor() and !Input.is_action_pressed("jump") and !Input.is_action_pressed("jump"):
 		jump_ability = true
 		min_jump_velocity = -600
-
+	if !player.is_on_floor():
+		jump_ability = false
 
 
