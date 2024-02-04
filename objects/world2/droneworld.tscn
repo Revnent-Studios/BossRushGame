@@ -27,6 +27,11 @@ script = ExtResource("9_7mkvm")
 position = Vector2(1, 177.5)
 shape = SubResource("RectangleShape2D_tsjfw")
 
+[node name="Timer" type="Timer" parent="laserwall"]
+process_callback = 0
+wait_time = 3.0
+one_shot = true
+
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(58, 92)
 zoom = Vector2(0.8, 0.8)
@@ -48,4 +53,17 @@ position = Vector2(394, 232)
 position = Vector2(413, 1)
 scale = Vector2(0.26, 0.26)
 
+[node name="PlatformTL" type="Marker2D" parent="." groups=["HoverPlat"]]
+position = Vector2(69, 14)
+
+[node name="PlatformBL" type="Marker2D" parent="." groups=["HoverPlat"]]
+position = Vector2(185, 137)
+
+[node name="PlatformTR" type="Marker2D" parent="." groups=["HoverPlat"]]
+position = Vector2(391, 147)
+
+[node name="PlatformBR" type="Marker2D" parent="." groups=["HoverPlat"]]
+position = Vector2(519, 22)
+
 [connection signal="body_entered" from="laserwall/Area2D" to="laserwall/Area2D" method="_on_body_entered"]
+[connection signal="timeout" from="laserwall/Timer" to="laserwall/Area2D" method="_on_timer_timeout"]
