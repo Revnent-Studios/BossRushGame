@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://b73lvyuo87qdo"]
 
-[ext_resource type="Texture2D" uid="uid://dda28dxkiadoo" path="res://objects/world2/drone resources/Skullboss/blatform.png" id="1_j7b0s"]
+[ext_resource type="Texture2D" uid="uid://dda28dxkiadoo" path="res://objects/world2/drone resources/DroneBoss/blatform.png" id="1_j7b0s"]
 [ext_resource type="Script" path="res://objects/world2/drone resources/soike.gd" id="1_n2nqv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_53jt6"]

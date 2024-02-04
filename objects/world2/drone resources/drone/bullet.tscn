@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://b55n2c5ve3g7h"]
+
+[ext_resource type="Texture2D" uid="uid://c13dawl70hipj" path="res://objects/world2/drone resources/drone/Sprite-0002.png" id="1_gc46e"]
+[ext_resource type="Script" path="res://objects/world2/drone resources/drone/bullet.gd" id="1_uqdw8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7gv3t"]
+radius = 14.0
+
+[node name="bullet" type="Area2D"]
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_uqdw8")
+
+[node name="Sprite-0002" type="Sprite2D" parent="."]
+texture = ExtResource("1_gc46e")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, -1)
+shape = SubResource("CircleShape2D_7gv3t")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+scale = Vector2(1.49, 1.49)
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dq1m7stg5vvah" path="res://objects/player Obj/birju.tscn" id="3_c64g6"]
 [ext_resource type="Script" path="res://objects/world2/Camera2D.gd" id="3_st6hh"]
 [ext_resource type="PackedScene" uid="uid://cd8xhh3poh7bc" path="res://objects/world2/drone resources/Platform.tscn" id="5_xduyb"]
-[ext_resource type="PackedScene" uid="uid://d16mibxdo8fx4" path="res://objects/components/Boss/drone/drone.tscn" id="6_fj23v"]
+[ext_resource type="PackedScene" uid="uid://d16mibxdo8fx4" path="res://objects/world2/drone resources/drone/drone.tscn" id="6_fj23v"]
 [ext_resource type="Script" path="res://objects/world2/laserwall.gd" id="9_7mkvm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tsjfw"]

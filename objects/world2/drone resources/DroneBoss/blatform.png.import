@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://n5f8r5d1noqu"
-path="res://.godot/imported/drone.png-fc8eb34ee6950ff19994e849900ac0b5.ctex"
+uid="uid://dda28dxkiadoo"
+path="res://.godot/imported/blatform.png-9c93552125a838c00ff95691e47da443.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://objects/components/Boss/drone/drone.png"
-dest_files=["res://.godot/imported/drone.png-fc8eb34ee6950ff19994e849900ac0b5.ctex"]
+source_file="res://objects/world2/drone resources/DroneBoss/blatform.png"
+dest_files=["res://.godot/imported/blatform.png-9c93552125a838c00ff95691e47da443.ctex"]
 
 [params]
 
