@@ -405,42 +405,42 @@ _data = {
 "WalkFlip": SubResource("Animation_id5a1")
 }
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dmabe"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_et6v6"]
 animation = &"BatonStrike"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rcqy6"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_v115p"]
 animation = &"BatonStrikeFlip"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_f4gxq"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_dmabe")
+blend_point_0/node = SubResource("AnimationNodeAnimation_et6v6")
 blend_point_0/pos = Vector2(1, 0)
-blend_point_1/node = SubResource("AnimationNodeAnimation_rcqy6")
+blend_point_1/node = SubResource("AnimationNodeAnimation_v115p")
 blend_point_1/pos = Vector2(-1, 0)
 blend_mode = 1
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_b1g5e"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tsbeo"]
 animation = &"Dash"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xjfw8"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rlw03"]
 animation = &"DashFlip"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_mv3g0"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_b1g5e")
+blend_point_0/node = SubResource("AnimationNodeAnimation_tsbeo")
 blend_point_0/pos = Vector2(1, 0)
-blend_point_1/node = SubResource("AnimationNodeAnimation_xjfw8")
+blend_point_1/node = SubResource("AnimationNodeAnimation_rlw03")
 blend_point_1/pos = Vector2(-1, 0)
 blend_mode = 1
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_o0elk"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_h3o3t"]
 animation = &"Walk"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lxt82"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8hllf"]
 animation = &"WalkFlip"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_yj81b"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_o0elk")
+blend_point_0/node = SubResource("AnimationNodeAnimation_h3o3t")
 blend_point_0/pos = Vector2(1, 0)
-blend_point_1/node = SubResource("AnimationNodeAnimation_lxt82")
+blend_point_1/node = SubResource("AnimationNodeAnimation_8hllf")
 blend_point_1/pos = Vector2(-1, 0)
 blend_mode = 1
 

@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://bhgq18u0u5fm8"]
+[gd_scene load_steps=8 format=3 uid="uid://bhgq18u0u5fm8"]
 
 [ext_resource type="PackedScene" uid="uid://bhbutqo00u12j" path="res://objects/world2/drone resources/parallaxdrone.tscn" id="2_mic08"]
 [ext_resource type="PackedScene" uid="uid://dq1m7stg5vvah" path="res://objects/player Obj/birju.tscn" id="3_c64g6"]
 [ext_resource type="Script" path="res://objects/world2/Camera2D.gd" id="3_st6hh"]
 [ext_resource type="PackedScene" uid="uid://cd8xhh3poh7bc" path="res://objects/world2/drone resources/Platform.tscn" id="5_xduyb"]
+[ext_resource type="PackedScene" uid="uid://d16mibxdo8fx4" path="res://objects/components/Boss/drone/drone.tscn" id="6_fj23v"]
 [ext_resource type="Script" path="res://objects/world2/laserwall.gd" id="9_7mkvm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tsjfw"]
@@ -42,5 +43,9 @@ position = Vector2(519, 112)
 
 [node name="Platform4" parent="." instance=ExtResource("5_xduyb")]
 position = Vector2(394, 232)
+
+[node name="Drone" parent="." instance=ExtResource("6_fj23v")]
+position = Vector2(413, 1)
+scale = Vector2(0.26, 0.26)
 
 [connection signal="body_entered" from="laserwall/Area2D" to="laserwall/Area2D" method="_on_body_entered"]
