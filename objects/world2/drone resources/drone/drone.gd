@@ -1,4 +1,4 @@
-extends CharacterBody2D
+extends Node2D
 var pos : int
 var Ready :bool = true
 signal noReady
@@ -7,13 +7,22 @@ var signalno:int
 var flipped = false
 @onready var sprite_2d = $Sprite2D
 @onready var funcs = ["droneIdle","droneDash"]
+@export var projectile : PackedScene
+@onready var ray_cast_2d = $RayCast2D
+var robot
+@onready var timer = $Timer
 
-
+func  _ready():
+	if get_tree().has_group("Player"):
+		robot = get_tree().get_nodes_in_group("Player")[0]
 
 func _process(delta):
+	_aim()
+	_check_coll()
 	if Ready:
 		var i = ranSig(1)
 		call(funcs[i])
+	
 
 func droneIdle():
 	Ready = false
@@ -25,9 +34,6 @@ func droneIdle():
 	idleTween.finished.connect(tweenFinised)
 
 func droneDash():
-	var robot
-	if get_tree().has_group("Player"):
-		robot = get_tree().get_nodes_in_group("Player")[0]
 	if robot!=null:
 		Ready = false
 		var pos = robot.position
@@ -54,3 +60,24 @@ func ranSig(noSig:int)->int:
 func tweenFinised():
 	Ready = true
 
+func _aim():
+	if robot!=null:
+		ray_cast_2d.target_position = to_local(robot.position)
+
+func _check_coll():
+	if ray_cast_2d.get_collider() == robot and timer.is_stopped():
+		timer.start()
+	if ray_cast_2d.get_collider() != robot and not timer.is_stopped() and Ready:
+		timer.stop()
+
+func shoot():
+	var bull = projectile.instantiate()
+	bull.position = position
+	bull.direction = (ray_cast_2d.target_position).normalized()
+	get_tree().current_scene.add_child(bull)
+
+
+
+func _on_timer_timeout():
+	shoot()
+	

@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=3 uid="uid://d16mibxdo8fx4"]
+
+[ext_resource type="Script" path="res://objects/world2/drone resources/drone/drone.gd" id="1_a7851"]
+[ext_resource type="PackedScene" uid="uid://b55n2c5ve3g7h" path="res://objects/world2/drone resources/drone/bullet.tscn" id="2_3orgu"]
+[ext_resource type="Texture2D" uid="uid://dmr8q75y8slfs" path="res://objects/world2/drone resources/drone/eldron.png" id="2_vq18y"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kma8s"]
+size = Vector2(337, 112)
+
+[node name="Drone" type="Node2D"]
+script = ExtResource("1_a7851")
+projectile = ExtResource("2_3orgu")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-4.5, 57)
+shape = SubResource("RectangleShape2D_kma8s")
+disabled = true
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(-100, 48)
+amount = 7
+lifetime = 0.6
+emission_shape = 3
+emission_rect_extents = Vector2(9.385, 2.95)
+gravity = Vector2(0, 200)
+
+[node name="CPUParticles2D2" type="CPUParticles2D" parent="."]
+position = Vector2(95, 48)
+amount = 7
+lifetime = 0.6
+emission_shape = 3
+emission_rect_extents = Vector2(9.385, 2.95)
+gravity = Vector2(0, 200)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(4, 21)
+texture = ExtResource("2_vq18y")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.5
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
