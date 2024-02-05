@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=3 uid="uid://c6e4qjdopuavv"]
+
+[ext_resource type="Script" path="res://objects/components/orb.gd" id="1_dyhq5"]
+[ext_resource type="Texture2D" uid="uid://cstv3b34yecfm" path="res://objects/components/Core.png" id="2_glsrh"]
+[ext_resource type="FontFile" uid="uid://bxgpde8amasen" path="res://Resources/Font/fanwood-master/Fanwood Text.otf" id="3_ub61q"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4rxnq"]
+radius = 98.9949
+
+[node name="Orb" type="Area2D"]
+script = ExtResource("1_dyhq5")
+
+[node name="Core" type="Sprite2D" parent="."]
+position = Vector2(0, 1)
+texture = ExtResource("2_glsrh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_4rxnq")
+
+[node name="Button" type="Button" parent="."]
+offset_left = -69.0
+offset_top = 44.0
+offset_right = -32.0
+offset_bottom = 57.0
+disabled = true
+text = "YES"
+
+[node name="Button2" type="Button" parent="."]
+offset_left = 26.0
+offset_top = 44.0
+offset_right = 69.0
+offset_bottom = 75.0
+disabled = true
+text = "NO"
+
+[node name="Label" type="Label" parent="."]
+offset_left = -120.0
+offset_top = -66.0
+offset_right = 150.0
+offset_bottom = -17.0
+theme_override_fonts/font = ExtResource("3_ub61q")
+text = "This Orbs Seems To Give You Relief
+                     Accept It?:"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
