@@ -33,10 +33,6 @@ func _ready():
 	birjesh.setHealth(100)
 
 func _process(delta):
-	if Input.is_action_just_pressed("left") or Input.is_action_just_pressed("right") and is_on_floor():
-		audio_stream_player_2d.play()
-	if Input.is_action_just_released("left") or Input.is_action_just_released("right") and !is_on_floor():
-		audio_stream_player_2d.stop()
 	if birjuHealthBar != null:
 		birjuHealthBar.value = birjesh.getHealth()
 	updateAnimParams()

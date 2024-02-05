@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dmappqbboniol"]
+[gd_scene load_steps=15 format=3 uid="uid://dmappqbboniol"]
 
 [ext_resource type="Texture2D" uid="uid://ci5gxarfg3p4p" path="res://objects/world1 Obj/warden/factory/road.png" id="1_4kx0l"]
 [ext_resource type="PackedScene" uid="uid://c8wevjk5civyh" path="res://parallaxfactory.tscn" id="2_aep2x"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://ehre83i61mj4" path="res://objects/components/Camera/camera_2d.tscn" id="4_udynv"]
 [ext_resource type="PackedScene" uid="uid://pkfcgg6y0770" path="res://objects/world1 Obj/warden.tscn" id="5_bbo00"]
 [ext_resource type="FontFile" uid="uid://bxgpde8amasen" path="res://Resources/Font/fanwood-master/Fanwood Text.otf" id="6_plo8d"]
+[ext_resource type="PackedScene" uid="uid://c6e4qjdopuavv" path="res://objects/components/orb.tscn" id="7_mshxf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pnjc7"]
 size = Vector2(1700, 140)
@@ -138,5 +139,9 @@ libraries = {
 "": SubResource("AnimationLibrary_in2kp")
 }
 
+[node name="Orb" parent="." instance=ExtResource("7_mshxf")]
+position = Vector2(575, 87)
+
 [connection signal="birjuHit" from="Warden" to="Robot" method="_on_warden_birju_hit"]
+[connection signal="value_changed" from="Warden/ProgressBar" to="Orb" method="_on_progress_bar_value_changed"]
 [connection signal="weaponHit" from="Robot" to="Warden" method="_on_robot_weapon_hit"]
