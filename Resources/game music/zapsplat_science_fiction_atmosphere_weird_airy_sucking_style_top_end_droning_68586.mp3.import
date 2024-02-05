@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bvqdanp50frqt"
+path="res://.godot/imported/zapsplat_science_fiction_atmosphere_weird_airy_sucking_style_top_end_droning_68586.mp3-5842983a512795c8fa60dbf13eb6a248.mp3str"
+
+[deps]
+
+source_file="res://Resources/game music/zapsplat_science_fiction_atmosphere_weird_airy_sucking_style_top_end_droning_68586.mp3"
+dest_files=["res://.godot/imported/zapsplat_science_fiction_atmosphere_weird_airy_sucking_style_top_end_droning_68586.mp3-5842983a512795c8fa60dbf13eb6a248.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

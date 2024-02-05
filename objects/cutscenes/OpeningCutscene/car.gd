@@ -4,10 +4,12 @@ var dend = false
 var nearcar = false
 @onready var hint = $"../Hint"
 @onready var robot = $"../Robot"
+@onready var audio_stream_player_2d = $AudioStreamPlayer2D
 
 func _physics_process(delta):
 	if can_free and dend and Input.is_action_just_released("interact") and nearcar :
 		robot.queue_free()
+		audio_stream_player_2d.play()
 		var travel = create_tween()
 		travel.tween_property(self,"position",Vector2(position.x+2000,position.y),3)
 		travel.finished.connect(collab)
@@ -25,9 +27,8 @@ func collab():
 	print("done")
 	
 func _on_area_2d_body_entered(body):
-	if body.is_in_group("Player"):
+	if body.is_in_group("Player") and dend:
 		nearcar = true
-	if dend:
 		hint.visible = true
 
 

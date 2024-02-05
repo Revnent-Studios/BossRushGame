@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://p4rng4dnxhg7"
+path="res://.godot/imported/zapsplat_science_fiction_robot_big_glitch_44020.mp3-6cd7e06df2a1ec1fab4bd8fca58813ad.mp3str"
+
+[deps]
+
+source_file="res://Resources/game music/zapsplat_science_fiction_robot_big_glitch_44020.mp3"
+dest_files=["res://.godot/imported/zapsplat_science_fiction_robot_big_glitch_44020.mp3-6cd7e06df2a1ec1fab4bd8fca58813ad.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
