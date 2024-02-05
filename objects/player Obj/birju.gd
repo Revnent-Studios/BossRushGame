@@ -31,7 +31,8 @@ func _ready():
 	birjesh.setHealth(100)
 
 func _process(delta):
-	birjuHealthBar.value = birjesh.getHealth()
+	if birjuHealthBar != null:
+		birjuHealthBar.value = birjesh.getHealth()
 	updateAnimParams()
 	jumping = is_on_floor()
 	if(birjesh.getHealth()<=0):
