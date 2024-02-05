@@ -2,9 +2,9 @@ extends Control
 
 @onready var label = $Panel/Label
 @onready var birju = $".."
+@onready var audio_stream_player_2d = $AudioStreamPlayer2D
 var dialogueCount = 0
 var allowF = false
-@onready var audio_stream_player_2d = $AudioStreamPlayer2D
 
 var dialogue = [["So you ain't been feelin' too well lately huh?",
 				"Well, I changed yer’ brain chip, swapped it for the only one I had.",
@@ -32,7 +32,7 @@ func _ready():
 func _process(delta):
 	if(allowF):
 		if Input.is_action_just_pressed("next dialogue"):
-        		audio_stream_player_2d.play()
+			audio_stream_player_2d.play()
 			if dialogueCount<len(dialogue[GlobalVariable.dialogueCounter]):
 				print(dialogueCount)
 				label.text = dialogue[GlobalVariable.dialogueCounter][dialogueCount]
@@ -41,6 +41,7 @@ func _process(delta):
 				dialogueCount = 1
 				emit_signal("dialogueEnded")
 				$"../../Scooter/Detection".queue_free()
+
 
 
 

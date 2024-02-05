@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://blwe3p2tee7vp"]
+[gd_scene load_steps=17 format=3 uid="uid://dw6hois68wiwt"]
 
 [ext_resource type="Texture2D" uid="uid://c7010rw7f7go5" path="res://objects/cutscenes/OpeningCutscene/home res/home/road home.png" id="1_q48ip"]
 [ext_resource type="Texture2D" uid="uid://61nngyeuyth4" path="res://objects/cutscenes/OpeningCutscene/home res/home/Sprite-0011.png" id="2_n6fpp"]

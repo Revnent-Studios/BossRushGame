@@ -1,9 +1,8 @@
-[gd_scene load_steps=50 format=3 uid="uid://dq1m7stg5vvah"]
+[gd_scene load_steps=49 format=3 uid="uid://dq1m7stg5vvah"]
 
 [ext_resource type="Script" path="res://objects/player Obj/birju.gd" id="1_np6y4"]
 [ext_resource type="PackedScene" uid="uid://detrmwmauvbo2" path="res://objects/components/dodge/Dodge.tscn" id="2_cjlee"]
 [ext_resource type="Texture2D" uid="uid://5c6ck8cul23f" path="res://objects/player Obj/Birju.png" id="3_pcrm4"]
-[ext_resource type="AudioStream" uid="uid://dgobwrcqjm807" path="res://Resources/game music/science_fiction_robot_run.mp3" id="4_eni7c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_axft1"]
 size = Vector2(11.2, 25.7)
@@ -808,9 +807,5 @@ collision_mask = 2
 position = Vector2(-65, -5)
 rotation = 0.303687
 shape = SubResource("RectangleShape2D_fuev8")
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("4_eni7c")
-volume_db = 6.741
 
 [connection signal="body_entered" from="WeaponHitbox" to="." method="_on_weapon_hitbox_body_entered"]
