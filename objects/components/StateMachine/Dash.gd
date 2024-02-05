@@ -7,6 +7,7 @@ class_name Dash
 var distance
 
 func enter():
+	warden.damage = 25
 	distance = birju.position.x - warden.position.x
 	if(distance > 0):
 		facing.x = 1

@@ -893,3 +893,5 @@ script = ExtResource("6_bmiw5")
 
 [node name="Dash" type="Node" parent="StateMachine"]
 script = ExtResource("7_lbf00")
+
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
