@@ -7,6 +7,8 @@ var signalno:int
 var flipped = false
 @onready var lefthit = $Area2D2/CollisionShape2D
 @onready var righthit = $Area2D3/CollisionShape2D
+@onready var audio_stream_player_2d = $AudioStreamPlayer2D
+@onready var audio_stream_player_2d_2 = $AudioStreamPlayer2D2
 
 @onready var sprite_2d = $Sprite2D
 @onready var funcs = ["droneIdle","droneDash"]
@@ -16,6 +18,7 @@ var robot
 @onready var timer = $Timer
 signal dashing
 func  _ready():
+	audio_stream_player_2d.play()
 	if get_tree().has_group("Player"):
 		robot = get_tree().get_nodes_in_group("Player")[0]
 
@@ -89,6 +92,7 @@ func _check_coll():
 
 func shoot():
 	if robot.visible:
+		audio_stream_player_2d_2.play()
 		var bull = projectile.instantiate()
 		bull.position = position
 		bull.direction = (ray_cast_2d.target_position).normalized()

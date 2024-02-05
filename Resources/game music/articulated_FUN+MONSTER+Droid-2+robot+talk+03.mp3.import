@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bsouwxwyali6h"
+path="res://.godot/imported/articulated_FUN+MONSTER+Droid-2+robot+talk+03.mp3-00f638e5172f61405ce019dfc149c769.mp3str"
+
+[deps]
+
+source_file="res://Resources/game music/articulated_FUN+MONSTER+Droid-2+robot+talk+03.mp3"
+dest_files=["res://.godot/imported/articulated_FUN+MONSTER+Droid-2+robot+talk+03.mp3-00f638e5172f61405ce019dfc149c769.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

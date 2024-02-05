@@ -4,6 +4,7 @@ extends Control
 @onready var birju = $".."
 var dialogueCount = 1
 var allowF = false
+@onready var audio_stream_player_2d = $AudioStreamPlayer2D
 
 var dialogue = [["So you ain't been feelin' too well lately huh?",
 				"Well, I changed yer’ brain chip, swapped it for the only one I had.",
@@ -23,6 +24,7 @@ func _ready():
 func _process(delta):
 	if(allowF):
 		if Input.is_action_just_pressed("next dialogue"):
+			audio_stream_player_2d.play()
 			if dialogueCount<len(dialogue[0]):
 				print(dialogueCount)
 				label.text = dialogue[0][dialogueCount]

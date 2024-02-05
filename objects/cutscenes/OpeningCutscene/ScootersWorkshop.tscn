@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cwmvvgstae2mt"]
+[gd_scene load_steps=24 format=3 uid="uid://cwmvvgstae2mt"]
 
 [ext_resource type="Texture2D" uid="uid://61nngyeuyth4" path="res://objects/cutscenes/OpeningCutscene/home res/home/Sprite-0011.png" id="1_ntil3"]
 [ext_resource type="Texture2D" uid="uid://3t8colr1f8g4" path="res://objects/cutscenes/OpeningCutscene/home res/home/scooter.png" id="1_o2aup"]
@@ -8,10 +8,14 @@
 [ext_resource type="Texture2D" uid="uid://c0n72xkb08tb3" path="res://objects/cutscenes/OpeningCutscene/home res/home/workshop.png" id="3_itdem"]
 [ext_resource type="PackedScene" uid="uid://cr4xocf21w71u" path="res://objects/DialogueHandler/DialogueHandler.tscn" id="4_68q3y"]
 [ext_resource type="PackedScene" uid="uid://lika0f64xkv0" path="res://parallaxhome.tscn" id="5_ty1pv"]
+[ext_resource type="Script" path="res://objects/cutscenes/OpeningCutscene/Scooter.gd" id="5_u8c7y"]
+[ext_resource type="AudioStream" uid="uid://bsouwxwyali6h" path="res://Resources/game music/articulated_FUN+MONSTER+Droid-2+robot+talk+03.mp3" id="8_b2ayx"]
 [ext_resource type="PackedScene" uid="uid://cklujyvn0eqdn" path="res://objects/components/hint/hint.tscn" id="9_ayh8i"]
 [ext_resource type="Script" path="res://objects/cutscenes/OpeningCutscene/car.gd" id="10_8rhw0"]
 [ext_resource type="Texture2D" uid="uid://b153dksjpdp45" path="res://objects/components/hint/Car.png" id="10_nfaoc"]
 [ext_resource type="Script" path="res://objects/components/Camera/camera_2d.gd" id="12_w03t1"]
+[ext_resource type="AudioStream" uid="uid://er33wuxf6v3u" path="res://Resources/game music/zapsplat_sound_design_buzzing_humming_long_92617.mp3" id="13_e8w1c"]
+[ext_resource type="PackedScene" uid="uid://c5lmhlt750kru" path="res://Resources/game music/bg_music.tscn" id="13_ugdh0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pi58k"]
 size = Vector2(1700, 140)
@@ -19,6 +23,44 @@ size = Vector2(1700, 140)
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ls5qk"]
 radius = 132.558
 height = 265.116
+
+[sub_resource type="Animation" id="Animation_pvlo2"]
+resource_name = "scooterji"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Scooter:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
+[sub_resource type="Animation" id="Animation_vlj7w"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Scooter:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nir84"]
+_data = {
+"RESET": SubResource("Animation_vlj7w"),
+"scooterji": SubResource("Animation_pvlo2")
+}
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bkxgn"]
 size = Vector2(31, 368)
@@ -65,11 +107,19 @@ texture = ExtResource("3_itdem")
 position = Vector2(1192, 197)
 texture = ExtResource("1_o2aup")
 hframes = 6
+script = ExtResource("5_u8c7y")
 
 [node name="Detection" type="Area2D" parent="Scooter"]
 
 [node name="DetectionArea" type="CollisionShape2D" parent="Scooter/Detection"]
 shape = SubResource("CapsuleShape2D_ls5qk")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Scooter"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_nir84")
+}
+speed_scale = 1.245
 
 [node name="Robot" parent="." groups=["Player"] instance=ExtResource("2_1tv6u")]
 position = Vector2(277, 137)
@@ -81,6 +131,10 @@ offset_top = -106.0
 offset_right = -321.0
 offset_bottom = -106.0
 scale = Vector2(0.556, 0.439)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Robot/DialogueHandler"]
+stream = ExtResource("8_b2ayx")
+volume_db = 20.704
 
 [node name="Parallaxhome" parent="." instance=ExtResource("5_ty1pv")]
 
@@ -118,10 +172,16 @@ shape = SubResource("CapsuleShape2D_cakw8")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="car"]
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="car"]
+stream = ExtResource("13_e8w1c")
+volume_db = 24.0
+
 [node name="Camera2D2" parent="." instance=ExtResource("3_2ahlt")]
 position = Vector2(277, 137)
 limit_right = 2450
 script = ExtResource("12_w03t1")
+
+[node name="BgMusic" parent="." instance=ExtResource("13_ugdh0")]
 
 [connection signal="body_entered" from="Scooter/Detection" to="Robot" method="_on_detection_body_entered"]
 [connection signal="body_entered" from="Scooter/Detection" to="Robot/DialogueHandler" method="_on_detection_body_entered"]

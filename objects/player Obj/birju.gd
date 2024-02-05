@@ -12,11 +12,13 @@ var direction : Vector2 = Vector2.ZERO
 var facing : Vector2 = Vector2.ZERO
 var jumping 
 var _on_door
+var running 
 @onready var animation_player = $"../AnimationPlayer"
 @onready var animtree : AnimationTree = $AnimationTree
 @onready var animplayer: AnimationPlayer = $AnimationPlayer
 @onready var birjuSprite = $Birju
 @onready var birjuHealthBar = $ProgressBar
+@onready var audio_stream_player_2d = $AudioStreamPlayer2D
 
 signal weaponHit
 
@@ -31,6 +33,10 @@ func _ready():
 	birjesh.setHealth(100)
 
 func _process(delta):
+	if Input.is_action_just_pressed("left") or Input.is_action_just_pressed("right") and is_on_floor():
+		audio_stream_player_2d.play()
+	if Input.is_action_just_released("left") or Input.is_action_just_released("right") and !is_on_floor():
+		audio_stream_player_2d.stop()
 	if birjuHealthBar != null:
 		birjuHealthBar.value = birjesh.getHealth()
 	updateAnimParams()
@@ -80,6 +86,7 @@ func updateAnimParams():
 	elif(velocity.x!=0):
 		animtree["parameters/conditions/idle"] = false
 		if $".".is_on_floor():
+			running = true
 			animtree["parameters/conditions/running"] = true
 	if Input.is_action_just_pressed("attack"):
 		animtree["parameters/conditions/attacking"] = true
