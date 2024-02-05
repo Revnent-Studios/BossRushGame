@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://bitllsq0pmptf"]
+[gd_scene load_steps=11 format=3 uid="uid://bitllsq0pmptf"]
 
 [ext_resource type="Texture2D" uid="uid://df8a2l4kj6j2h" path="res://objects/cutscenes/OpeningCutscene/home res/flat/wals.png" id="1_1to67"]
 [ext_resource type="PackedScene" uid="uid://dq1m7stg5vvah" path="res://objects/player Obj/birju.tscn" id="1_6h1ka"]
 [ext_resource type="Texture2D" uid="uid://duga5gavpmtfv" path="res://objects/cutscenes/OpeningCutscene/home res/flat/tv.png" id="3_5nnvk"]
 [ext_resource type="PackedScene" uid="uid://cklujyvn0eqdn" path="res://objects/components/hint/hint.tscn" id="4_gtuqb"]
+[ext_resource type="PackedScene" uid="uid://c5lmhlt750kru" path="res://Resources/game music/bg_music.tscn" id="5_3c8ru"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rey7r"]
 size = Vector2(1562.3, 873.048)
@@ -81,6 +82,8 @@ scale = Vector2(0.969799, 1)
 texture = ExtResource("3_5nnvk")
 
 [node name="Hint" parent="." instance=ExtResource("4_gtuqb")]
+
+[node name="BgMusic" parent="." instance=ExtResource("5_3c8ru")]
 
 [connection signal="body_entered" from="Room" to="Robot" method="_on_room_body_entered"]
 [connection signal="body_entered" from="Door" to="Robot" method="_on_door_body_entered"]

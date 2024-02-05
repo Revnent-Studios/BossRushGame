@@ -66,7 +66,7 @@ color = Color(0.2, 0.247059, 0.345098, 1)
 polygon = PackedVector2Array(302, -32, 319, -31, 319, 29, 300, 29)
 
 [node name="ParallaxLayer5" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2(0.6, 0.6)
+motion_scale = Vector2(0.6, 1)
 motion_mirroring = Vector2(640, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer5"]

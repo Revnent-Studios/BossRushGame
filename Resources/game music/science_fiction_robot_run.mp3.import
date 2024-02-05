@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dgobwrcqjm807"
+path="res://.godot/imported/science_fiction_robot_run.mp3-2a3e50f93ab696055882261fb0ebc209.mp3str"
+
+[deps]
+
+source_file="res://Resources/game music/science_fiction_robot_run.mp3"
+dest_files=["res://.godot/imported/science_fiction_robot_run.mp3-2a3e50f93ab696055882261fb0ebc209.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

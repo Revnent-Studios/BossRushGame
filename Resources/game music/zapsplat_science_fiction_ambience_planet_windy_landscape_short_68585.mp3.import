@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cfjpl8qos1k7f"
+path="res://.godot/imported/zapsplat_science_fiction_ambience_planet_windy_landscape_short_68585.mp3-c20666d2ee6cb7ab22516d9f08c80e8c.mp3str"
+
+[deps]
+
+source_file="res://Resources/game music/zapsplat_science_fiction_ambience_planet_windy_landscape_short_68585.mp3"
+dest_files=["res://.godot/imported/zapsplat_science_fiction_ambience_planet_windy_landscape_short_68585.mp3-c20666d2ee6cb7ab22516d9f08c80e8c.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
