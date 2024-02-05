@@ -19,7 +19,23 @@ bg_color = Color(0.901961, 0, 0.0941176, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t0vrw"]
 bg_color = Color(0.266667, 0.74902, 0, 1)
 
-[sub_resource type="Animation" id="Animation_bph4p"]
+[sub_resource type="Animation" id="Animation_8vkop"]
+resource_name = "youdied"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Robot/Camera2D/Label:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2.5, 3.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_a7xel"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -34,26 +50,10 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_3bp8p"]
-resource_name = "youdied"
-length = 4.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Robot/Camera2D/Label:self_modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1, 2, 3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_in2kp"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g6j8c"]
 _data = {
-"RESET": SubResource("Animation_bph4p"),
-"youdied": SubResource("Animation_3bp8p")
+"RESET": SubResource("Animation_a7xel"),
+"youdied": SubResource("Animation_8vkop")
 }
 
 [node name="Wardenregion" type="Node2D"]
@@ -133,9 +133,9 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_t0vrw")
 step = 1.0
 show_percentage = false
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayerWarden" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_in2kp")
+"": SubResource("AnimationLibrary_g6j8c")
 }
 
 [connection signal="birjuHit" from="Warden" to="Robot" method="_on_warden_birju_hit"]
