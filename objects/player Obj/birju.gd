@@ -14,11 +14,16 @@ var jumping
 var _on_door
 var running 
 var flag = true
-@onready var animation_player = $"../AnimationPlayer"
+var bulletHit = false
+
+@onready var animation_playerDr = $"../AnimationPlayerDr"
+@onready var animation_player_warden = $"../AnimationPlayerWarden"
 @onready var animtree : AnimationTree = $AnimationTree
 @onready var animplayer: AnimationPlayer = $AnimationPlayer
 @onready var birjuSprite = $Birju
 @onready var birjuHealthBar = $ProgressBar
+@onready var label = $Label
+
 
 signal weaponHit
 
@@ -33,6 +38,9 @@ func _ready():
 	birjesh.setHealth(100)
 
 func _process(delta):
+	if(bulletHit):
+		bulletHit = false
+		birjesh.damageTaken(5)
 	if birjuHealthBar != null:
 		birjuHealthBar.value = birjesh.getHealth()
 	updateAnimParams()
@@ -41,7 +49,11 @@ func _process(delta):
 		birjuHealthBar.visible = false
 		flag = false
 		birjuSprite.visible = false
-		animation_player.play("youdied")
+		if  animation_player_warden!=null:
+			animation_player_warden.play("youdied")
+		elif animation_playerDr!=null:
+			label.visible = true
+			animation_playerDr.play("youdied")
 		await get_tree().create_timer(4.0).timeout
 		get_tree().reload_current_scene()
 
@@ -137,12 +149,18 @@ func _on_dialogue_handler_dialogue_ended():
 
 func _on_weapon_hitbox_body_entered(body):
 	if(body==$"../Warden"):
+		print("warden hit")
 		emit_signal("weaponHit")
-
+	if(body==$"../Drone"):
+		emit_signal("weaponHit")
 
 func _on_door_body_exited(body):
 	_on_door = false
 
 
 func _on_warden_birju_hit(damage):
+	birjesh.damageTaken(damage)
+
+
+func _on_drone_birju_hit(damage):
 	birjesh.damageTaken(damage)

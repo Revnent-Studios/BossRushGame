@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dw6hois68wiwt"]
+[gd_scene load_steps=16 format=3 uid="uid://dw6hois68wiwt"]
 
 [ext_resource type="Texture2D" uid="uid://c7010rw7f7go5" path="res://objects/cutscenes/OpeningCutscene/home res/home/road home.png" id="1_q48ip"]
 [ext_resource type="Texture2D" uid="uid://61nngyeuyth4" path="res://objects/cutscenes/OpeningCutscene/home res/home/Sprite-0011.png" id="2_n6fpp"]
@@ -15,10 +15,6 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pi58k"]
 size = Vector2(1700, 140)
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ls5qk"]
-radius = 132.558
-height = 265.116
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bkxgn"]
 size = Vector2(31, 502.5)
@@ -66,10 +62,15 @@ position = Vector2(1192, 197)
 texture = ExtResource("4_1fs4c")
 hframes = 6
 
-[node name="Detection" type="Area2D" parent="Scooter"]
+[node name="Polygon2D2" type="Polygon2D" parent="."]
+position = Vector2(1192, 197)
+color = Color(0.462745, 0.258824, 0.541176, 1)
+polygon = PackedVector2Array(-25, -24, -9, -38, -7, -34, -7, -33, -10, -33, -10, -29, -18, -18, -18, -17, -19, -17, -19, -16, -20, -16)
 
-[node name="DetectionArea" type="CollisionShape2D" parent="Scooter/Detection"]
-shape = SubResource("CapsuleShape2D_ls5qk")
+[node name="Polygon2D" type="Polygon2D" parent="."]
+position = Vector2(1192, 197)
+color = Color(0.129412, 0.129412, 0.137255, 1)
+polygon = PackedVector2Array(-6, -27, 5, -27, 5, -21, -7, -21)
 
 [node name="Robot" parent="." groups=["Player"] instance=ExtResource("5_bpjno")]
 position = Vector2(277, 137)
@@ -127,9 +128,6 @@ position = Vector2(277, 137)
 limit_right = 2450
 script = ExtResource("12_abpo7")
 
-[connection signal="body_entered" from="Scooter/Detection" to="Robot" method="_on_detection_body_entered"]
-[connection signal="body_entered" from="Scooter/Detection" to="Robot/DialogueHandler" method="_on_detection_body_entered"]
-[connection signal="body_exited" from="Scooter/Detection" to="Robot/DialogueHandler" method="_on_detection_body_exited"]
 [connection signal="dialogueEnded" from="Robot/DialogueHandler" to="Robot" method="_on_dialogue_handler_dialogue_ended"]
 [connection signal="dialogueEnded" from="Robot/DialogueHandler" to="car" method="_on_dialogue_handler_dialogue_ended"]
 [connection signal="body_entered" from="car/Area2D" to="car" method="_on_area_2d_body_entered"]

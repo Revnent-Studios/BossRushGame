@@ -5,19 +5,24 @@ signal noReady
 var Randi = RandomNumberGenerator.new()
 var signalno:int
 var flipped = false
+var drone = boss.new()
 @onready var lefthit = $Area2D2/CollisionShape2D
 @onready var righthit = $Area2D3/CollisionShape2D
 @onready var audio_stream_player_2d = $AudioStreamPlayer2D
 @onready var audio_stream_player_2d_2 = $AudioStreamPlayer2D2
-
 @onready var sprite_2d = $Sprite2D
 @onready var funcs = ["droneIdle","droneDash"]
 @export var projectile : PackedScene
 @onready var ray_cast_2d = $RayCast2D
 var robot
 @onready var timer = $Timer
+@onready var progress_bar = $ProgressBar
+
 signal dashing
+signal birjuHit
+
 func  _ready():
+	drone.setHealth(100)
 	audio_stream_player_2d.play()
 	if get_tree().has_group("Player"):
 		robot = get_tree().get_nodes_in_group("Player")[0]
@@ -25,9 +30,15 @@ func  _ready():
 func _process(delta):
 	_aim()
 	_check_coll()
+	if(drone.getHealth()<=0):
+		queue_free()
+	progress_bar.value = drone.getHealth()
 	if Ready:
 		var i = ranSig(1)
 		call(funcs[i])
+	if(drone.getHealth()==0):
+		print("He dead")
+		queue_free()
 	
 
 func droneIdle():
@@ -107,3 +118,15 @@ func _on_timer_timeout():
 
 func _on_dashing():
 	sprite_2d.frame = 0
+
+
+func _on_area_2d_3_body_entered(body):
+	emit_signal("birjuHit",10)
+
+
+func _on_area_2d_2_body_entered(body):
+	emit_signal("birjuHit",10)
+
+
+func _on_robot_weapon_hit():
+	drone.damageTaken(randi_range(7,14))
