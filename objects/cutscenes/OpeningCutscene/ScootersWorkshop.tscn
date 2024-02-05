@@ -63,7 +63,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bkxgn"]
-size = Vector2(31, 368)
+size = Vector2(31, 502.5)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cakw8"]
 
@@ -125,7 +125,10 @@ speed_scale = 1.245
 position = Vector2(277, 137)
 
 [node name="DialogueHandler" parent="Robot" instance=ExtResource("4_68q3y")]
-visible = false
+anchors_preset = 0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
 offset_left = -321.0
 offset_top = -106.0
 offset_right = -321.0
@@ -141,11 +144,11 @@ volume_db = 20.704
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(-2, 174)
+position = Vector2(-2, 140.5)
 shape = SubResource("RectangleShape2D_bkxgn")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(1652, 170)
+position = Vector2(1652, 136.25)
 shape = SubResource("RectangleShape2D_bkxgn")
 
 [node name="Hint" parent="." instance=ExtResource("9_ayh8i")]
