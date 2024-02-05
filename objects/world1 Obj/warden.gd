@@ -27,6 +27,8 @@ func _process(delta):
 	wardenHealthBar.value = warden.getHealth()
 	if(warden.getHealth()<=0):
 		queue_free()
+		
+		get_tree().change_scene_to_file("res://objects/cutscenes/OpeningCutscene/ScootersWorkshop.tscn")
 
 func _physics_process(delta):
 	

@@ -14,6 +14,10 @@ config/name="Boss Rush Game Jam"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://Resources/icon.svg"
 
+[autoload]
+
+GlobalVariable="*res://objects/components/Global/GlobalVariable.gd"
+
 [display]
 
 window/size/viewport_width=640
