@@ -6,9 +6,12 @@ const JUMP_VELOCITY = -400.0
 
 var warden = boss.new()
 var activity = 0
+var damage
 #@onready var birju = $"../Robot"
 @onready var birju = get_parent().find_child("Robot")
+@onready var wardenHealthBar = $ProgressBar
 
+signal birjuHit
 
 var flag = true
 
@@ -19,6 +22,7 @@ func _ready():
 	warden.setHealth(100)
 
 func _process(delta):
+	wardenHealthBar.value = warden.getHealth()
 	bossActivity()
 	if(warden.getHealth()<=0):
 		queue_free()
@@ -45,3 +49,8 @@ func bossActivity():
 
 func _on_robot_weapon_hit():
 	warden.damageTaken(25)
+
+
+func _on_hitbox_body_entered(body):
+	if body == birju:
+		emit_signal("birjuHit",damage)

@@ -1,16 +1,60 @@
-[gd_scene load_steps=8 format=3 uid="uid://dmappqbboniol"]
+[gd_scene load_steps=14 format=3 uid="uid://dmappqbboniol"]
 
 [ext_resource type="Texture2D" uid="uid://ci5gxarfg3p4p" path="res://objects/world1 Obj/warden/factory/road.png" id="1_4kx0l"]
 [ext_resource type="PackedScene" uid="uid://c8wevjk5civyh" path="res://parallaxfactory.tscn" id="2_aep2x"]
 [ext_resource type="PackedScene" uid="uid://dq1m7stg5vvah" path="res://objects/player Obj/birju.tscn" id="3_jojdo"]
 [ext_resource type="PackedScene" uid="uid://ehre83i61mj4" path="res://objects/components/Camera/camera_2d.tscn" id="4_udynv"]
 [ext_resource type="PackedScene" uid="uid://pkfcgg6y0770" path="res://objects/world1 Obj/warden.tscn" id="5_bbo00"]
+[ext_resource type="FontFile" uid="uid://bxgpde8amasen" path="res://Resources/Font/fanwood-master/Fanwood Text.otf" id="6_plo8d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pnjc7"]
 size = Vector2(1700, 140)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ixrtq"]
 size = Vector2(31, 368)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0wt50"]
+bg_color = Color(0.901961, 0, 0.0941176, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t0vrw"]
+bg_color = Color(0.266667, 0.74902, 0, 1)
+
+[sub_resource type="Animation" id="Animation_3bp8p"]
+resource_name = "youdied"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Robot/Camera2D/Label:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_bph4p"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Robot/Camera2D/Label:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_in2kp"]
+_data = {
+"RESET": SubResource("Animation_bph4p"),
+"youdied": SubResource("Animation_3bp8p")
+}
 
 [node name="Wardenregion" type="Node2D"]
 
@@ -52,10 +96,47 @@ texture = ExtResource("1_4kx0l")
 [node name="Warden" parent="." instance=ExtResource("5_bbo00")]
 position = Vector2(447, 87)
 
+[node name="ProgressBar" type="ProgressBar" parent="Warden"]
+offset_left = -38.0
+offset_top = -85.0
+offset_right = 112.0
+offset_bottom = -58.0
+scale = Vector2(0.46, 0.46)
+theme_override_styles/fill = SubResource("StyleBoxFlat_0wt50")
+show_percentage = false
+
 [node name="Robot" parent="." instance=ExtResource("3_jojdo")]
 position = Vector2(1020, 125)
 
 [node name="Camera2D" parent="Robot" instance=ExtResource("4_udynv")]
 limit_right = 1865
 
+[node name="Label" type="Label" parent="Robot/Camera2D"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -89.0
+offset_top = -29.0
+offset_right = 97.0
+offset_bottom = 23.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("6_plo8d")
+theme_override_font_sizes/font_size = 61
+text = "You Died"
+
+[node name="ProgressBar" type="ProgressBar" parent="Robot"]
+offset_left = -21.0
+offset_top = -80.0
+offset_right = 114.0
+offset_bottom = -53.0
+scale = Vector2(0.385, 0.385)
+theme_override_styles/fill = SubResource("StyleBoxFlat_t0vrw")
+step = 1.0
+show_percentage = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_in2kp")
+}
+
+[connection signal="birjuHit" from="Warden" to="Robot" method="_on_warden_birju_hit"]
 [connection signal="weaponHit" from="Robot" to="Warden" method="_on_robot_weapon_hit"]

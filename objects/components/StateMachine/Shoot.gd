@@ -9,6 +9,7 @@ class_name Shoot
 
 var distance
 func enter():
+	warden.damage = 20
 	distance = birju.position.x - warden.position.x
 	if(distance > 0):
 		facing.x = 1

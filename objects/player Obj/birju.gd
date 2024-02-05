@@ -12,8 +12,11 @@ var direction : Vector2 = Vector2.ZERO
 var facing : Vector2 = Vector2.ZERO
 var jumping 
 var _on_door
+@onready var animation_player = $"../AnimationPlayer"
 @onready var animtree : AnimationTree = $AnimationTree
 @onready var animplayer: AnimationPlayer = $AnimationPlayer
+@onready var birjuSprite = $Birju
+@onready var birjuHealthBar = $ProgressBar
 
 signal weaponHit
 
@@ -28,10 +31,14 @@ func _ready():
 	birjesh.setHealth(100)
 
 func _process(delta):
+	birjuHealthBar.value = birjesh.getHealth()
 	updateAnimParams()
 	jumping = is_on_floor()
 	if(birjesh.getHealth()<=0):
-		queue_free()
+		birjuSprite.visible = false
+		animation_player.play("youdied")
+		await get_tree().create_timer(4.0).timeout
+		get_tree().reload_current_scene()
 
 func _physics_process(delta):
 	# Call the methods on the player_Motion instance
@@ -128,3 +135,7 @@ func _on_weapon_hitbox_body_entered(body):
 
 func _on_door_body_exited(body):
 	_on_door = false
+
+
+func _on_warden_birju_hit(damage):
+	birjesh.damageTaken(damage)

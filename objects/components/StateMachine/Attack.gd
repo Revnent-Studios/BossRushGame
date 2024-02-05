@@ -6,6 +6,7 @@ class_name Attack
 @onready var animation_tree = $"../../AnimationTree"
 var distance
 func enter():
+	warden.damage = 15
 	distance = birju.position.x - warden.position.x
 	if(distance > 0):
 		facing.x = 1
