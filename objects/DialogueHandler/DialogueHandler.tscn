@@ -33,9 +33,9 @@ offset_bottom = 651.0
 
 [node name="Label" type="Label" parent="Panel"]
 layout_mode = 0
-offset_left = 318.0
+offset_left = 294.0
 offset_top = 33.0
-offset_right = 1113.0
+offset_right = 1114.0
 offset_bottom = 212.0
 text = "So you ain't been feelin' too well lately huh?"
 label_settings = SubResource("LabelSettings_jj358")

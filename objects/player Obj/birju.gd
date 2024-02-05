@@ -38,39 +38,42 @@ func _process(delta):
 	updateAnimParams()
 	jumping = is_on_floor()
 	if(birjesh.getHealth()<=0):
+		birjuHealthBar.visible = false
+		flag = false
 		birjuSprite.visible = false
 		animation_player.play("youdied")
 		await get_tree().create_timer(4.0).timeout
 		get_tree().reload_current_scene()
 
 func _physics_process(delta):
-	# Call the methods on the player_Motion instance
-	if Input.is_action_just_released("interact") and _on_door:
-		get_tree().change_scene_to_file("res://objects/cutscenes/OpeningCutscene/ScootersWorkshop.tscn")
-	if Input.is_action_just_pressed("dodge"):
-		dodge._dodge(dodgedur)
-	if Input.is_action_just_pressed("attack"):
-		attack("sword")
-	if dodge._is_dodging():
-		emit_signal("_is_invincible")
-	
-	player_Motion.get_gravity(delta,$".")
-	direction = Input.get_vector("left","right","jump","down").normalized()
-	if(direction[0]>0):
-		facing.x = 1
-	elif(direction[0]<0):
-		facing.x = -1
-	
-	if cutscene:
-		velocity.x = 0
-	if not cutscene:
-		player_Motion.get_in(delta,$".")
-	if not indoors and not cutscene:
-			player_Motion.jump(delta,$".")
-	
-	
-	# Continue with your other physics process logic
-	move_and_slide()
+	if flag:
+		# Call the methods on the player_Motion instance
+		if Input.is_action_just_released("interact") and _on_door:
+			get_tree().change_scene_to_file("res://objects/cutscenes/OpeningCutscene/ScootersWorkshop.tscn")
+		if Input.is_action_just_pressed("dodge"):
+			dodge._dodge(dodgedur)
+		if Input.is_action_just_pressed("attack"):
+			attack("sword")
+		if dodge._is_dodging():
+			emit_signal("_is_invincible")
+		
+		player_Motion.get_gravity(delta,$".")
+		direction = Input.get_vector("left","right","jump","down").normalized()
+		if(direction[0]>0):
+			facing.x = 1
+		elif(direction[0]<0):
+			facing.x = -1
+		
+		if cutscene:
+			velocity.x = 0
+		if not cutscene:
+			player_Motion.get_in(delta,$".")
+		if not indoors and not cutscene:
+				player_Motion.jump(delta,$".")
+		
+		
+		# Continue with your other physics process logic
+		move_and_slide()
 
 func updateAnimParams():
 	animtree["parameters/conditions/idle"] = false
