@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://cklujyvn0eqdn"]
+
+[ext_resource type="Script" path="res://objects/cutscenes/OpeningCutscene/Hint.gd" id="1_mscyp"]
+
+[node name="Hint" type="Label"]
+visible = false
+offset_left = 498.0
+offset_top = 213.0
+offset_right = 559.495
+offset_bottom = 237.0
+scale = Vector2(1.36, 1.36)
+text = "Press F"
+max_lines_visible = 1
+script = ExtResource("1_mscyp")

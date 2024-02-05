@@ -11,6 +11,7 @@ var timer
 var direction : Vector2 = Vector2.ZERO
 var facing : Vector2 = Vector2.ZERO
 var jumping 
+var _on_door
 @onready var animtree : AnimationTree = $AnimationTree
 @onready var animplayer: AnimationPlayer = $AnimationPlayer
 
@@ -34,6 +35,8 @@ func _process(delta):
 
 func _physics_process(delta):
 	# Call the methods on the player_Motion instance
+	if Input.is_action_just_released("interact") and _on_door:
+		get_tree().change_scene_to_file("res://objects/cutscenes/OpeningCutscene/ScootersWorkshop.tscn")
 	if Input.is_action_just_pressed("dodge"):
 		dodge._dodge(dodgedur)
 	if Input.is_action_just_pressed("attack"):
@@ -101,7 +104,9 @@ func _on_room_body_entered(body):
 		player_Motion.speed = 225
 
 func _on_door_body_entered(body):
-	get_tree().change_scene_to_file("res://objects/cutscenes/OpeningCutscene/ScootersWorkshop.tscn")
+	_on_door = true
+
+
 
 func _on_detection_body_entered(body):
 	var dialogueBoxSprite = $DialogueHandler
@@ -119,3 +124,7 @@ func _on_dialogue_handler_dialogue_ended():
 func _on_weapon_hitbox_body_entered(body):
 	if(body==$"../Warden"):
 		emit_signal("weaponHit")
+
+
+func _on_door_body_exited(body):
+	_on_door = false

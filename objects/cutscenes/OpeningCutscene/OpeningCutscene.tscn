@@ -1,6 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://bitllsq0pmptf"]
+[gd_scene load_steps=10 format=3 uid="uid://bitllsq0pmptf"]
 
+[ext_resource type="Texture2D" uid="uid://df8a2l4kj6j2h" path="res://objects/cutscenes/OpeningCutscene/home res/flat/wals.png" id="1_1to67"]
 [ext_resource type="PackedScene" uid="uid://dq1m7stg5vvah" path="res://objects/player Obj/birju.tscn" id="1_6h1ka"]
+[ext_resource type="Texture2D" uid="uid://duga5gavpmtfv" path="res://objects/cutscenes/OpeningCutscene/home res/flat/tv.png" id="3_5nnvk"]
+[ext_resource type="PackedScene" uid="uid://cklujyvn0eqdn" path="res://objects/components/hint/hint.tscn" id="4_gtuqb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rey7r"]
 size = Vector2(1562.3, 873.048)
@@ -15,10 +18,14 @@ size = Vector2(26.6025, 873.048)
 size = Vector2(1559.88, 191.709)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_foj8f"]
-size = Vector2(141, 244)
+size = Vector2(236.972, 316.772)
 
 [node name="OpeningCutscene" type="Node2D"]
 scale = Vector2(0.745, 0.745)
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(0.117647, 0.117647, 0.117647, 1)
+polygon = PackedVector2Array(-1.34228, -92.6175, 906.04, -92.6175, 914.094, 567.785, -76.5101, 554.362, -64.4295, -100.671)
 
 [node name="Room" type="Area2D" parent="."]
 scale = Vector2(0.745, 0.745)
@@ -29,16 +36,21 @@ scale = Vector2(0.745, 0.745)
 shape = SubResource("RectangleShape2D_rey7r")
 debug_color = Color(0.784314, 0.796078, 0.784314, 0.419608)
 
+[node name="Wals" type="Sprite2D" parent="."]
+position = Vector2(438.926, 302.013)
+scale = Vector2(0.965, 0.965)
+texture = ExtResource("1_1to67")
+
 [node name="CollisionShapes" type="StaticBody2D" parent="."]
 scale = Vector2(0.745, 0.745)
 
 [node name="LeftWall" type="CollisionShape2D" parent="CollisionShapes"]
-position = Vector2(1.02242, 322.508)
+position = Vector2(163.957, 340.525)
 scale = Vector2(0.745, 0.745)
 shape = SubResource("RectangleShape2D_aywfk")
 
 [node name="RightWall" type="CollisionShape2D" parent="CollisionShapes"]
-position = Vector2(1155.8, 325.211)
+position = Vector2(1010.77, 338.723)
 scale = Vector2(0.745, 0.745)
 shape = SubResource("RectangleShape2D_7xttc")
 
@@ -48,17 +60,30 @@ scale = Vector2(0.745, 0.745)
 shape = SubResource("RectangleShape2D_d7o5b")
 debug_color = Color(0.513726, 0.0431373, 0.0862745, 0.419608)
 
-[node name="Door" type="Area2D" parent="CollisionShapes"]
-scale = Vector2(0.745, 0.745)
+[node name="Door" type="Area2D" parent="."]
+scale = Vector2(0.555025, 0.555025)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionShapes/Door"]
-position = Vector2(1233.39, 587.675)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Door"]
+position = Vector2(792.031, 562.986)
 scale = Vector2(0.745, 0.745)
 shape = SubResource("RectangleShape2D_foj8f")
 debug_color = Color(0, 0.647059, 0.180392, 0.419608)
 
 [node name="Robot" parent="." instance=ExtResource("1_6h1ka")]
-position = Vector2(162.416, 312.752)
+position = Vector2(194.631, 312.752)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(437.584, 284.564)
+
+[node name="Tv" type="Sprite2D" parent="."]
+position = Vector2(439.195, 306.04)
+scale = Vector2(0.969799, 1)
+texture = ExtResource("3_5nnvk")
+
+[node name="Hint" parent="." instance=ExtResource("4_gtuqb")]
 
 [connection signal="body_entered" from="Room" to="Robot" method="_on_room_body_entered"]
-[connection signal="body_entered" from="CollisionShapes/Door" to="Robot" method="_on_door_body_entered"]
+[connection signal="body_entered" from="Door" to="Robot" method="_on_door_body_entered"]
+[connection signal="body_entered" from="Door" to="Hint" method="_on_door_body_entered"]
+[connection signal="body_exited" from="Door" to="Robot" method="_on_door_body_exited"]
+[connection signal="body_exited" from="Door" to="Hint" method="_on_door_body_exited"]

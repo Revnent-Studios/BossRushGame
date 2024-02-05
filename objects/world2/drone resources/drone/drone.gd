@@ -5,13 +5,16 @@ signal noReady
 var Randi = RandomNumberGenerator.new()
 var signalno:int
 var flipped = false
+@onready var lefthit = $Area2D2/CollisionShape2D
+@onready var righthit = $Area2D3/CollisionShape2D
+
 @onready var sprite_2d = $Sprite2D
 @onready var funcs = ["droneIdle","droneDash"]
 @export var projectile : PackedScene
 @onready var ray_cast_2d = $RayCast2D
 var robot
 @onready var timer = $Timer
-
+signal dashing
 func  _ready():
 	if get_tree().has_group("Player"):
 		robot = get_tree().get_nodes_in_group("Player")[0]
@@ -34,7 +37,7 @@ func droneIdle():
 	idleTween.finished.connect(tweenFinised)
 
 func droneDash():
-	if robot!=null:
+	if robot.visible and robot != null:
 		Ready = false
 		var pos = robot.position
 		if pos.x<position.x:
@@ -43,41 +46,60 @@ func droneDash():
 			sprite_2d.flip_h = true
 			flipped = true
 			dashTween.finished.connect(tweenFinised)
+			if dashTween.is_running():
+				righthit.disabled = false
+				emit_signal("dashing")
+			
 		if flipped and pos.x>position.x:
 			var dashTween = create_tween()
 			dashTween.tween_property(self,"position",pos,0.7)
 			sprite_2d.flip_h = false
 			flipped = false
 			dashTween.finished.connect(tweenFinised)
-		else:
+			if dashTween.is_running():
+				lefthit.disabled = false
+				emit_signal("dashing")
+		if !flipped and pos.x>position.x:
 			var dashTween = create_tween()
 			dashTween.tween_property(self,"position",pos,0.7)
 			dashTween.finished.connect(tweenFinised)
+			if dashTween.is_running():
+				lefthit.disabled = false
+				emit_signal("dashing")
 
 func ranSig(noSig:int)->int:
 	return Randi.randi_range(0,noSig)
 
 func tweenFinised():
 	Ready = true
+	sprite_2d.frame = 1
+	lefthit.disabled = true
+	righthit.disabled = true
 
 func _aim():
 	if robot!=null:
 		ray_cast_2d.target_position = to_local(robot.position)
 
 func _check_coll():
-	if ray_cast_2d.get_collider() == robot and timer.is_stopped():
-		timer.start()
-	if ray_cast_2d.get_collider() != robot and not timer.is_stopped() and Ready:
-		timer.stop()
+	if robot!=null:
+		if ray_cast_2d.get_collider() == robot and timer.is_stopped() and robot.visible:
+			timer.start()
+		if ray_cast_2d.get_collider() != robot and not timer.is_stopped() and robot.visible:
+			timer.stop()
 
 func shoot():
-	var bull = projectile.instantiate()
-	bull.position = position
-	bull.direction = (ray_cast_2d.target_position).normalized()
-	get_tree().current_scene.add_child(bull)
+	if robot.visible:
+		var bull = projectile.instantiate()
+		bull.position = position
+		bull.direction = (ray_cast_2d.target_position).normalized()
+		get_tree().current_scene.add_child(bull)
 
 
 
 func _on_timer_timeout():
 	shoot()
 	
+
+
+func _on_dashing():
+	sprite_2d.frame = 0
