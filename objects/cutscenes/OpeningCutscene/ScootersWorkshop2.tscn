@@ -1,0 +1,137 @@
+[gd_scene load_steps=17 format=3 uid="uid://blwe3p2tee7vp"]
+
+[ext_resource type="Texture2D" uid="uid://c7010rw7f7go5" path="res://objects/cutscenes/OpeningCutscene/home res/home/road home.png" id="1_q48ip"]
+[ext_resource type="Texture2D" uid="uid://61nngyeuyth4" path="res://objects/cutscenes/OpeningCutscene/home res/home/Sprite-0011.png" id="2_n6fpp"]
+[ext_resource type="Texture2D" uid="uid://c0n72xkb08tb3" path="res://objects/cutscenes/OpeningCutscene/home res/home/workshop.png" id="3_xlbes"]
+[ext_resource type="Texture2D" uid="uid://3t8colr1f8g4" path="res://objects/cutscenes/OpeningCutscene/home res/home/scooter.png" id="4_1fs4c"]
+[ext_resource type="PackedScene" uid="uid://dq1m7stg5vvah" path="res://objects/player Obj/birju.tscn" id="5_bpjno"]
+[ext_resource type="PackedScene" uid="uid://cr4xocf21w71u" path="res://objects/DialogueHandler/DialogueHandler.tscn" id="6_yyr83"]
+[ext_resource type="PackedScene" uid="uid://lika0f64xkv0" path="res://parallaxhome.tscn" id="7_e8vhe"]
+[ext_resource type="PackedScene" uid="uid://cklujyvn0eqdn" path="res://objects/components/hint/hint.tscn" id="8_1kid1"]
+[ext_resource type="Script" path="res://objects/cutscenes/OpeningCutscene/car.gd" id="9_jv7af"]
+[ext_resource type="Texture2D" uid="uid://b153dksjpdp45" path="res://objects/components/hint/Car.png" id="10_ud1pw"]
+[ext_resource type="PackedScene" uid="uid://ehre83i61mj4" path="res://objects/components/Camera/camera_2d.tscn" id="11_3ho0p"]
+[ext_resource type="Script" path="res://objects/components/Camera/camera_2d.gd" id="12_abpo7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pi58k"]
+size = Vector2(1700, 140)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ls5qk"]
+radius = 132.558
+height = 265.116
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bkxgn"]
+size = Vector2(31, 502.5)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cakw8"]
+
+[node name="ScootersWorkshop" type="Node2D"]
+
+[node name="roads" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="roads"]
+position = Vector2(850, 289)
+shape = SubResource("RectangleShape2D_pi58k")
+
+[node name="RoadHome" type="Sprite2D" parent="roads"]
+position = Vector2(361, 179)
+texture = ExtResource("1_q48ip")
+
+[node name="RoadHome4" type="Sprite2D" parent="roads"]
+position = Vector2(-128, 179)
+texture = ExtResource("1_q48ip")
+
+[node name="RoadHome2" type="Sprite2D" parent="roads"]
+position = Vector2(850, 179)
+texture = ExtResource("1_q48ip")
+
+[node name="RoadHome3" type="Sprite2D" parent="roads"]
+position = Vector2(1340, 179)
+texture = ExtResource("1_q48ip")
+
+[node name="RoadHome5" type="Sprite2D" parent="roads"]
+position = Vector2(1828, 180)
+texture = ExtResource("1_q48ip")
+
+[node name="Building" type="Sprite2D" parent="roads"]
+position = Vector2(115, 35)
+texture = ExtResource("2_n6fpp")
+
+[node name="Workshop" type="Sprite2D" parent="."]
+position = Vector2(1393, 102)
+texture = ExtResource("3_xlbes")
+
+[node name="Scooter" type="Sprite2D" parent="."]
+position = Vector2(1192, 197)
+texture = ExtResource("4_1fs4c")
+hframes = 6
+
+[node name="Detection" type="Area2D" parent="Scooter"]
+
+[node name="DetectionArea" type="CollisionShape2D" parent="Scooter/Detection"]
+shape = SubResource("CapsuleShape2D_ls5qk")
+
+[node name="Robot" parent="." groups=["Player"] instance=ExtResource("5_bpjno")]
+position = Vector2(277, 137)
+
+[node name="DialogueHandler" parent="Robot" instance=ExtResource("6_yyr83")]
+visible = false
+anchors_preset = 0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = -321.0
+offset_top = -106.0
+offset_right = -321.0
+offset_bottom = -106.0
+scale = Vector2(0.556, 0.439)
+
+[node name="Parallaxhome" parent="." instance=ExtResource("7_e8vhe")]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-2, 140.5)
+shape = SubResource("RectangleShape2D_bkxgn")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1652, 136.25)
+shape = SubResource("RectangleShape2D_bkxgn")
+
+[node name="Hint" parent="." instance=ExtResource("8_1kid1")]
+offset_left = 411.0
+offset_top = 75.0
+offset_right = 472.495
+offset_bottom = 99.0
+
+[node name="car" type="Node2D" parent="."]
+script = ExtResource("9_jv7af")
+
+[node name="Car" type="Sprite2D" parent="car"]
+position = Vector2(465, 123)
+scale = Vector2(0.68, 0.68)
+texture = ExtResource("10_ud1pw")
+
+[node name="Area2D" type="Area2D" parent="car"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="car/Area2D"]
+position = Vector2(444, 155)
+rotation = 1.5708
+scale = Vector2(3.86, 14.955)
+shape = SubResource("CapsuleShape2D_cakw8")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="car"]
+
+[node name="Camera2D2" parent="." instance=ExtResource("11_3ho0p")]
+position = Vector2(277, 137)
+limit_right = 2450
+script = ExtResource("12_abpo7")
+
+[connection signal="body_entered" from="Scooter/Detection" to="Robot" method="_on_detection_body_entered"]
+[connection signal="body_entered" from="Scooter/Detection" to="Robot/DialogueHandler" method="_on_detection_body_entered"]
+[connection signal="body_exited" from="Scooter/Detection" to="Robot/DialogueHandler" method="_on_detection_body_exited"]
+[connection signal="dialogueEnded" from="Robot/DialogueHandler" to="Robot" method="_on_dialogue_handler_dialogue_ended"]
+[connection signal="dialogueEnded" from="Robot/DialogueHandler" to="car" method="_on_dialogue_handler_dialogue_ended"]
+[connection signal="body_entered" from="car/Area2D" to="car" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="car/Area2D" to="car" method="_on_area_2d_body_exited"]
+[connection signal="screen_exited" from="car/VisibleOnScreenNotifier2D" to="car" method="_on_visible_on_screen_notifier_2d_screen_exited"]

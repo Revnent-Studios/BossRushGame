@@ -9,10 +9,12 @@ var object
 func _on_body_entered(body):
 	if body.is_in_group("Player"):
 		robot.visible = false
+		robot.flag = false
 		timer.start()
 
 
 
 func _on_timer_timeout():
 	robot.position = platform_bl.position
+	robot.flag = true
 	robot.visible = true
