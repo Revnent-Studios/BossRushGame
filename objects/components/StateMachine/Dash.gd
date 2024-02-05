@@ -19,7 +19,7 @@ func enter():
 		warden.velocity.x= 500
 	elif facing.x == -1:
 		warden.velocity.x = -500
-	await get_tree().create_timer(2.0).timeout
+	await get_tree().create_timer(3.0).timeout
 	if(abs(distance)>50):
 		transition.emit(self,"Follow")
 	else:

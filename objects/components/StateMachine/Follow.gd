@@ -28,11 +28,13 @@ func follow():
 		facing.x = 1
 	elif(distance<0):
 		facing.x = -1
+	print(distance)
 	animation_tree["parameters/conditions/walking"] = true
 	animation_tree["parameters/Walk/blend_position"] = facing
 	if(abs(distance)<50):
 		transition.emit(self,"Attack")
 	elif(abs(distance)>700):
-		print("It is time to dash NOW")
 		transition.emit(self,"Dash")
+	elif(abs(distance)>150 and abs(distance) <200):
+		transition.emit(self,"Shoot")
 	
