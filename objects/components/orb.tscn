@@ -34,13 +34,15 @@ disabled = true
 text = "NO"
 
 [node name="Label" type="Label" parent="."]
-offset_left = -120.0
-offset_top = -66.0
-offset_right = 150.0
+offset_left = -152.0
+offset_top = -74.0
+offset_right = 160.0
 offset_bottom = -17.0
 theme_override_fonts/font = ExtResource("3_ub61q")
-text = "This Orbs Seems To Give You Relief
-                     Accept It?:"
+text = " This orb will give you relief in exchange something 
+ might happen....
+Accept It?:"
+horizontal_alignment = 1
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]

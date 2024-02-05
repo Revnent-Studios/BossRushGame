@@ -1,5 +1,6 @@
-[gd_scene load_steps=16 format=3 uid="uid://dw6hois68wiwt"]
+[gd_scene load_steps=18 format=3 uid="uid://dw6hois68wiwt"]
 
+[ext_resource type="Script" path="res://objects/cutscenes/OpeningCutscene/ScootersWorkshop2.gd" id="1_03kpl"]
 [ext_resource type="Texture2D" uid="uid://c7010rw7f7go5" path="res://objects/cutscenes/OpeningCutscene/home res/home/road home.png" id="1_q48ip"]
 [ext_resource type="Texture2D" uid="uid://61nngyeuyth4" path="res://objects/cutscenes/OpeningCutscene/home res/home/Sprite-0011.png" id="2_n6fpp"]
 [ext_resource type="Texture2D" uid="uid://c0n72xkb08tb3" path="res://objects/cutscenes/OpeningCutscene/home res/home/workshop.png" id="3_xlbes"]
@@ -12,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://b153dksjpdp45" path="res://objects/components/hint/Car.png" id="10_ud1pw"]
 [ext_resource type="PackedScene" uid="uid://ehre83i61mj4" path="res://objects/components/Camera/camera_2d.tscn" id="11_3ho0p"]
 [ext_resource type="Script" path="res://objects/components/Camera/camera_2d.gd" id="12_abpo7"]
+[ext_resource type="FontFile" uid="uid://bxgpde8amasen" path="res://Resources/Font/fanwood-master/Fanwood Text.otf" id="14_ongnj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pi58k"]
 size = Vector2(1700, 140)
@@ -22,6 +24,7 @@ size = Vector2(31, 502.5)
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cakw8"]
 
 [node name="ScootersWorkshop" type="Node2D"]
+script = ExtResource("1_03kpl")
 
 [node name="roads" type="StaticBody2D" parent="."]
 
@@ -62,6 +65,15 @@ position = Vector2(1192, 197)
 texture = ExtResource("4_1fs4c")
 hframes = 6
 
+[node name="Label" type="Label" parent="Scooter"]
+offset_left = -91.0
+offset_top = -83.0
+offset_right = 104.0
+offset_bottom = -34.0
+text = "He appears to be... dead?
+Did you cause this?"
+horizontal_alignment = 1
+
 [node name="Polygon2D2" type="Polygon2D" parent="."]
 position = Vector2(1192, 197)
 color = Color(0.462745, 0.258824, 0.541176, 1)
@@ -73,7 +85,7 @@ color = Color(0.129412, 0.129412, 0.137255, 1)
 polygon = PackedVector2Array(-6, -27, 5, -27, 5, -21, -7, -21)
 
 [node name="Robot" parent="." groups=["Player"] instance=ExtResource("5_bpjno")]
-position = Vector2(277, 137)
+position = Vector2(1052, 120)
 
 [node name="DialogueHandler" parent="Robot" instance=ExtResource("6_yyr83")]
 visible = false
@@ -124,12 +136,33 @@ shape = SubResource("CapsuleShape2D_cakw8")
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="car"]
 
 [node name="Camera2D2" parent="." instance=ExtResource("11_3ho0p")]
-position = Vector2(277, 137)
+position = Vector2(331, 169)
 limit_right = 2450
 script = ExtResource("12_abpo7")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="Polygon2D3" type="Polygon2D" parent="."]
+visible = false
+color = Color(0.0666667, 0.0745098, 0.164706, 1)
+polygon = PackedVector2Array(-1083, -448, 2899, -448, 2899, 803, -1126, 775, -1121, -476)
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_left = 171.0
+offset_top = 53.0
+offset_right = 323.0
+offset_bottom = 102.0
+theme_override_fonts/font = ExtResource("14_ongnj")
+text = "GAME END
+Thanks for playing.."
+horizontal_alignment = 1
 
 [connection signal="dialogueEnded" from="Robot/DialogueHandler" to="Robot" method="_on_dialogue_handler_dialogue_ended"]
 [connection signal="dialogueEnded" from="Robot/DialogueHandler" to="car" method="_on_dialogue_handler_dialogue_ended"]
 [connection signal="body_entered" from="car/Area2D" to="car" method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="car/Area2D" to="car" method="_on_area_2d_body_exited"]
 [connection signal="screen_exited" from="car/VisibleOnScreenNotifier2D" to="car" method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
