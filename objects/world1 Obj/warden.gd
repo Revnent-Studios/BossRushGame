@@ -10,6 +10,8 @@ var damage
 #@onready var birju = $"../Robot"
 @onready var birju = get_parent().find_child("Robot")
 @onready var wardenHealthBar = $ProgressBar
+@onready var label = $"../Robot/Camera2D/Label"
+@onready var animation_player = $"../AnimationPlayer"
 
 signal birjuHit
 
@@ -23,7 +25,6 @@ func _ready():
 
 func _process(delta):
 	wardenHealthBar.value = warden.getHealth()
-	bossActivity()
 	if(warden.getHealth()<=0):
 		queue_free()
 
@@ -43,12 +44,8 @@ func _physics_process(delta):
 	
 	move_and_slide()
 
-func bossActivity():
-	pass
-
-
 func _on_robot_weapon_hit():
-	warden.damageTaken(25)
+	warden.damageTaken(randi_range(7,15))
 
 
 func _on_hitbox_body_entered(body):
