@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://cr4xocf21w71u"]
+[gd_scene load_steps=6 format=3 uid="uid://cr4xocf21w71u"]
 
 [ext_resource type="Script" path="res://objects/DialogueHandler/DialogueHandler.gd" id="1_8uv2x"]
 [ext_resource type="Texture2D" uid="uid://debebq8vfuujm" path="res://objects/DialogueHandler/dialogueBox.png" id="2_wtmkt"]
 [ext_resource type="FontFile" uid="uid://bxgpde8amasen" path="res://Resources/Font/fanwood-master/Fanwood Text.otf" id="3_cckih"]
+[ext_resource type="AudioStream" uid="uid://bsouwxwyali6h" path="res://Resources/game music/articulated_FUN+MONSTER+Droid-2+robot+talk+03.mp3" id="4_tubq6"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_jj358"]
 font = ExtResource("3_cckih")
@@ -40,3 +41,7 @@ offset_bottom = 212.0
 label_settings = SubResource("LabelSettings_jj358")
 vertical_alignment = 1
 autowrap_mode = 3
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_tubq6")
+volume_db = 20.704
