@@ -32,7 +32,7 @@ func _ready():
 func _process(delta):
 	if(allowF):
 		if Input.is_action_just_pressed("next dialogue"):
-      audio_stream_player_2d.play()
+        		audio_stream_player_2d.play()
 			if dialogueCount<len(dialogue[GlobalVariable.dialogueCounter]):
 				print(dialogueCount)
 				label.text = dialogue[GlobalVariable.dialogueCounter][dialogueCount]
