@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bhgq18u0u5fm8"]
+[gd_scene load_steps=15 format=3 uid="uid://bhgq18u0u5fm8"]
 
 [ext_resource type="PackedScene" uid="uid://bhbutqo00u12j" path="res://objects/world2/drone resources/parallaxdrone.tscn" id="2_mic08"]
 [ext_resource type="FontFile" uid="uid://bxgpde8amasen" path="res://Resources/Font/fanwood-master/Fanwood Text.otf" id="3_6gynv"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://objects/world2/Camera2D.gd" id="3_st6hh"]
 [ext_resource type="PackedScene" uid="uid://cd8xhh3poh7bc" path="res://objects/world2/drone resources/Platform.tscn" id="5_xduyb"]
 [ext_resource type="PackedScene" uid="uid://d16mibxdo8fx4" path="res://objects/world2/drone resources/drone/drone.tscn" id="6_fj23v"]
+[ext_resource type="PackedScene" uid="uid://c6e4qjdopuavv" path="res://objects/components/orb.tscn" id="8_h2a56"]
 [ext_resource type="Script" path="res://objects/world2/laserwall.gd" id="9_7mkvm"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dxi4e"]
@@ -127,6 +128,9 @@ scale = Vector2(0.46, 0.46)
 theme_override_styles/fill = SubResource("StyleBoxFlat_7tthl")
 show_percentage = false
 
+[node name="Orb" parent="." instance=ExtResource("8_h2a56")]
+position = Vector2(302, 65)
+
 [node name="PlatformTL" type="Marker2D" parent="." groups=["HoverPlat"]]
 position = Vector2(69, 14)
 
@@ -148,3 +152,4 @@ libraries = {
 [connection signal="body_entered" from="laserwall2/Area2D" to="laserwall2/Area2D" method="_on_body_entered"]
 [connection signal="timeout" from="laserwall2/Timer" to="laserwall2/Area2D" method="_on_timer_timeout"]
 [connection signal="birjuHit" from="Drone" to="Robot" method="_on_drone_birju_hit"]
+[connection signal="value_changed" from="Drone/ProgressBar" to="Orb" method="_on_dronevalue_changed"]

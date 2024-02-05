@@ -24,7 +24,7 @@ func _on_visible_on_screen_notifier_2d_screen_exited():
 
 func collab():
 	if(GlobalVariable.dialogueCounter==0):
-		GlobalVariable.dialogueCounter+=1
+		GlobalVariable.dialogueCounter=1
 		get_tree().change_scene_to_file("res://objects/world1 Obj/warden/wardenregion.tscn")
 	elif(GlobalVariable.dialogueCounter==1):
 		get_tree().change_scene_to_file("res://objects/world2/droneworld.tscn")

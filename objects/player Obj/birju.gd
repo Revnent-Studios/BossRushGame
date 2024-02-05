@@ -41,7 +41,7 @@ func _process(delta):
 	if(bulletHit):
 		bulletHit = false
 		birjesh.damageTaken(5)
-    
+	
 	if birjuHealthBar != null:
 		birjuHealthBar.value = birjesh.getHealth()
 	updateAnimParams()
