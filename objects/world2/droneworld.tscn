@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bhgq18u0u5fm8"]
+[gd_scene load_steps=9 format=3 uid="uid://bhgq18u0u5fm8"]
 
 [ext_resource type="PackedScene" uid="uid://bhbutqo00u12j" path="res://objects/world2/drone resources/parallaxdrone.tscn" id="2_mic08"]
 [ext_resource type="PackedScene" uid="uid://dq1m7stg5vvah" path="res://objects/player Obj/birju.tscn" id="3_c64g6"]
@@ -8,7 +8,10 @@
 [ext_resource type="Script" path="res://objects/world2/laserwall.gd" id="9_7mkvm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tsjfw"]
-size = Vector2(22, 375)
+size = Vector2(31, 492)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0duon"]
+size = Vector2(36, 2406)
 
 [node name="Wardenregion" type="Node2D"]
 
@@ -24,10 +27,32 @@ position = Vector2(-24, 3)
 script = ExtResource("9_7mkvm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="laserwall/Area2D"]
-position = Vector2(1, 177.5)
+position = Vector2(-3.5, 119)
 shape = SubResource("RectangleShape2D_tsjfw")
+disabled = true
 
 [node name="Timer" type="Timer" parent="laserwall"]
+process_callback = 0
+wait_time = 3.0
+one_shot = true
+
+[node name="laserwall2" type="Node" parent="."]
+
+[node name="Area2D" type="Area2D" parent="laserwall2"]
+position = Vector2(-24, 3)
+script = ExtResource("9_7mkvm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="laserwall2/Area2D"]
+position = Vector2(462, 301)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_0duon")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="laserwall2/Area2D"]
+position = Vector2(667, 44)
+shape = SubResource("RectangleShape2D_0duon")
+disabled = true
+
+[node name="Timer" type="Timer" parent="laserwall2"]
 process_callback = 0
 wait_time = 3.0
 one_shot = true
@@ -67,3 +92,5 @@ position = Vector2(519, 22)
 
 [connection signal="body_entered" from="laserwall/Area2D" to="laserwall/Area2D" method="_on_body_entered"]
 [connection signal="timeout" from="laserwall/Timer" to="laserwall/Area2D" method="_on_timer_timeout"]
+[connection signal="body_entered" from="laserwall2/Area2D" to="laserwall2/Area2D" method="_on_body_entered"]
+[connection signal="timeout" from="laserwall2/Timer" to="laserwall2/Area2D" method="_on_timer_timeout"]
